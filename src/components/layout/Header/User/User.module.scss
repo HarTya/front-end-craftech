@@ -1,0 +1,10 @@
+@import '@/assets/styles/_variables.scss';
+
+.image {
+	width: 52.5px;
+	height: 52.5px;
+	border-radius: 50%;
+	position: relative;
+	overflow: hidden;
+	background-color: $color-accent-dark;
+}

@@ -1,0 +1,116 @@
+@import '@/assets/styles/_variables.scss';
+
+@keyframes ToplineAppearanceAnimation {
+	from {
+		width: 0;
+	}
+	to {
+		width: 30%;
+	}
+}
+
+.main {
+	position: relative;
+	max-width: 100%;
+	display: flex;
+}
+
+.topline {
+	content: '';
+	position: absolute;
+	top: -20%;
+	left: 0;
+	width: 30%;
+	max-width: 140px;
+	animation: ToplineAppearanceAnimation 1s ease-in-out;
+	border-top: $border_width-thick solid $color-accent;
+	border-radius: $border_radius-small;
+
+	&_thinner {
+		border-width: $border_width-medium;
+	}
+}
+
+.span {
+	transition: color 0.2s ease-in-out;
+}
+
+.heading {
+	font-size: $font_size-heading;
+}
+
+.subheading_large {
+	font-size: $font_size-subheading-large;
+}
+
+.subheading_medium {
+	font-size: $font_size-subheading-medium;
+}
+
+.subheading {
+	font-size: $font_size-subheading;
+}
+
+.body_large {
+	font-size: $font_size-body-large;
+}
+
+.body_medium {
+	font-size: $font_size-body-medium;
+}
+
+.body_small {
+	font-size: $font_size-body-small;
+}
+
+.body {
+	font-size: $font_size-body;
+}
+
+.caption_large {
+	font-size: $font_size-caption-large;
+}
+
+.caption_medium {
+	font-size: $font_size-caption-medium;
+}
+
+.caption {
+	font-size: $font_size-caption;
+}
+
+.semibold {
+	font-weight: 600;
+}
+
+.bold {
+	font-weight: 700;
+}
+
+.accent {
+	color: $color-accent;
+}
+
+.accent_dark {
+	color: $color-accent-dark;
+}
+
+.error {
+	color: $color-error;
+}
+
+.rating {
+	color: $color-rating;
+}
+
+.nowrap {
+	display: block;
+	text-overflow: ellipsis;
+	overflow: hidden;
+	max-width: 100%;
+	white-space: nowrap;
+}
+
+.prewrap {
+	white-space: pre-wrap;
+}

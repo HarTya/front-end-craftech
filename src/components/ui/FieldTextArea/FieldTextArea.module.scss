@@ -1,0 +1,56 @@
+@import '@/assets/styles/_variables.scss';
+
+.title {
+	display: flex;
+	justify-content: space-between;
+	align-items: flex-end;
+}
+
+.textarea {
+	opacity: 0.5;
+	width: 100%;
+	height: 253px;
+	padding: 15px 20px;
+	margin: 10px 0;
+	font-size: $font_size-body;
+	font-weight: 700;
+	color: $color-accent-dark;
+	border: $border_width-medium solid $color-accent;
+	border-radius: $border_radius-medium;
+	transition: opacity 0.2s ease-in-out;
+	resize: none;
+
+	&:focus {
+		outline: none;
+		opacity: 1;
+	}
+
+	&::-webkit-scrollbar {
+		display: none;
+	}
+
+	&:-webkit-autofill {
+		-webkit-text-fill-color: $color-accent-dark !important;
+		-webkit-background-clip: text;
+		caret-color: $color-accent-dark;
+	}
+
+	&::placeholder {
+		color: $color-accent-dark;
+	}
+
+	&_error {
+		border-color: $color-error;
+		color: $color-error;
+
+		&:-webkit-autofill {
+			-webkit-text-fill-color: $color-error !important;
+			-webkit-background-clip: text;
+			caret-color: $color-error;
+		}
+
+		&::placeholder {
+			color: $color-error;
+		}
+	}
+}

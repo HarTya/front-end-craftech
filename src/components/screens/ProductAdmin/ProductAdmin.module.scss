@@ -1,0 +1,63 @@
+@import '@/assets/styles/_variables.scss';
+
+.section {
+	width: 100%;
+	min-height: calc(100vh - $header-height);
+	padding: 30px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	flex-direction: column;
+}
+
+.title {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	flex-direction: column;
+	text-align: center;
+	width: 100%;
+	max-width: 720px;
+}
+
+.back {
+	margin-bottom: 25px;
+
+	> button {
+		padding: 0;
+		width: 50px;
+	}
+}
+
+.text {
+	text-align: center;
+}
+
+.form {
+	width: 100%;
+	max-width: 360px;
+}
+
+.field {
+	margin-top: 10px;
+
+	&:first-child {
+		margin-top: 29px;
+	}
+}
+
+.select {
+	margin-top: 10px;
+	padding-bottom: 10px;
+
+	> div:last-child {
+		margin-top: 10px;
+		width: 100%;
+		animation: none;
+	}
+}
+
+.button {
+	width: 100%;
+	margin-top: 19px;
+}

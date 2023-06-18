@@ -1,0 +1,35 @@
+.main {
+	padding: 33px 7.23% 33px 6.1%;
+	flex-direction: column;
+
+	&_button {
+		padding-bottom: 11px;
+	}
+}
+
+.content {
+	width: 100%;
+	display: grid;
+	grid-template-columns: repeat(2, calc(50% - 10px));
+	grid-gap: 20px;
+}
+
+.button {
+	cursor: pointer;
+	user-select: none;
+	margin-top: 33px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	flex-direction: column;
+
+	> svg {
+		transition: transform 0.2s ease-in-out;
+	}
+
+	&_active {
+		> svg {
+			transform: rotate(180deg);
+		}
+	}
+}

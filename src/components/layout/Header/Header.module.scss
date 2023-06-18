@@ -1,0 +1,55 @@
+@import '@/assets/styles/_variables.scss';
+
+.main {
+	position: fixed;
+	top: 0;
+	left: 0;
+	z-index: 100;
+	width: 100%;
+	height: $header-height;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	padding: 0 7.292%;
+	background-color: $color-accent;
+}
+
+.logo {
+	cursor: pointer;
+	height: 100%;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.nav {
+	width: 285px;
+	height: 100%;
+	display: flex;
+	justify-content: flex-end;
+	align-items: center;
+
+	&_item {
+		cursor: pointer;
+		user-select: none;
+		height: 100%;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+
+		&:not(:last-child) {
+			margin-right: 30px;
+		}
+	}
+}
+
+@media screen and (max-width: 1440px) {
+	.logo {
+		margin-right: auto;
+	}
+
+	.nav {
+		width: auto;
+		margin-left: 30px;
+	}
+}

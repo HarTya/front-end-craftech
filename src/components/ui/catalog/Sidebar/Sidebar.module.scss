@@ -1,0 +1,95 @@
+@import '@/assets/styles/_variables.scss';
+
+.aside {
+	padding-top: 43px;
+	width: 332px;
+	height: calc(100vh - ($header-height + 20px));
+	border-right: $border_width-thin solid $color-accent;
+	border-bottom: $border_width-thin solid $color-accent;
+	margin-bottom: 20px;
+	background-color: white;
+	overflow-y: auto;
+
+	&::-webkit-scrollbar {
+		display: none;
+	}
+
+	&_pin {
+		position: fixed;
+		top: $header-height;
+		left: 0;
+		z-index: 1;
+	}
+}
+
+.title {
+	display: flex;
+	padding-left: 58px;
+	padding-bottom: 22px;
+	border-bottom: $border_width-thin solid $color-accent;
+}
+
+.social {
+	padding: 20px 0 7.5px 23px;
+	border-top: $border_width-thin solid $color-accent;
+	border-bottom: $border_width-thin solid $color-accent;
+
+	> div:first-child {
+		opacity: 0.8;
+		margin-bottom: 14px;
+	}
+
+	> div:last-child {
+		display: flex;
+		justify-content: flex-start;
+		align-items: center;
+
+		.link {
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			width: 60px;
+			height: 60px;
+
+			&:not(:last-child) {
+				margin-right: 7.5px;
+			}
+		}
+	}
+}
+
+.info {
+	padding: 28px 0 27px 23px;
+	border-bottom: $border_width-thin solid $color-accent;
+
+	> div:first-child {
+		opacity: 0.8;
+		margin-bottom: 20px;
+	}
+
+	> div:last-child {
+		padding-left: 35px;
+
+		> div {
+			&:not(:last-child) {
+				margin-bottom: 25px;
+			}
+		}
+	}
+}
+
+.copyright {
+	opacity: 0.8;
+	padding: 20px 0 22px 23px;
+	padding-left: 23px;
+
+	> div:first-child {
+		margin-bottom: 13px;
+	}
+}
+
+.admin {
+	display: block;
+	padding: 22px 0 22px 58px;
+	border-top: $border_width-thin solid $color-accent;
+}

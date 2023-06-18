@@ -1,0 +1,33 @@
+*,
+*::after,
+*::before {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+}
+
+*::selection {
+	background-color: rgba(0, 0, 0, 0.15);
+}
+
+a {
+	color: currentColor;
+	text-decoration: none;
+}
+
+body {
+	overflow-x: hidden;
+
+	&.no-scroll {
+		overflow-y: hidden;
+	}
+
+	&::-webkit-scrollbar {
+		display: none;
+	}
+}
+
+*:disabled {
+	pointer-events: none;
+	opacity: 0.8;
+}

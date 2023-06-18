@@ -1,0 +1,56 @@
+@import '@/assets/styles/_variables.scss';
+
+.section {
+	width: 100%;
+	min-height: calc(100vh - $header-height);
+	padding: 30px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	flex-direction: column;
+}
+
+.image {
+	width: 210px;
+	height: 210px;
+	border-radius: 50%;
+	position: relative;
+	overflow: hidden;
+	margin-bottom: 19px;
+}
+
+.title {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	flex-direction: column;
+	text-align: center;
+	margin-bottom: 19px;
+}
+
+.form {
+	width: 100%;
+	max-width: 360px;
+}
+
+.field {
+	margin-top: 10px;
+}
+
+.button {
+	width: 100%;
+	margin-top: 17px;
+
+	&:first-child {
+		margin-top: 19px;
+	}
+
+	&:last-child {
+		margin-top: 34px;
+		opacity: 0.5;
+
+		&:hover {
+			opacity: 1;
+		}
+	}
+}

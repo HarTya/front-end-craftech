@@ -1,0 +1,67 @@
+@import '@/assets/styles/_variables.scss';
+
+.main {
+	position: relative;
+
+	&_top {
+		height: 58vh;
+		overflow-y: auto;
+		padding-bottom: 150px;
+		border-radius: 0 0 $border_radius-medium $border_radius-medium;
+
+		&::-webkit-scrollbar {
+			display: none;
+		}
+	}
+
+	&_bottom {
+		position: absolute;
+		left: 0;
+		right: 0;
+		bottom: 0;
+		z-index: 1;
+		background-color: white;
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+		height: 129px;
+		padding: 0 40px 0 52px;
+		border: $border_width-medium solid $color-accent-half-transparent;
+		border-radius: $border_radius-medium;
+
+		> button {
+			width: 100%;
+			max-width: 370px;
+			padding: 0;
+		}
+	}
+}
+
+.discount {
+	margin-top: 21px;
+	height: 50px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	border: $border_width-medium solid $color-accent-half-transparent;
+	border-radius: $border_radius-medium;
+}
+
+@media screen and (max-width: 1024px) {
+	.main {
+		&_top {
+			padding-bottom: 222px;
+		}
+
+		&_bottom {
+			justify-content: center;
+			align-items: flex-start;
+			flex-direction: column;
+			height: 201px;
+
+			> button {
+				margin: 21px auto 0 auto;
+			}
+		}
+	}
+}

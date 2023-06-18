@@ -1,0 +1,57 @@
+@import '@/assets/styles/_variables.scss';
+
+.main {
+	width: 100%;
+	display: flex;
+	justify-content: flex-start;
+	align-items: flex-start;
+	flex-direction: column;
+	padding: 30px 6.1%;
+	border: $border_width-medium solid $color-accent-half-transparent;
+	border-radius: $border_radius-medium;
+
+	&:not(:last-child) {
+		margin-bottom: 25px;
+	}
+}
+
+.top {
+	width: 100%;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	margin-bottom: 20px;
+}
+
+.image {
+	width: 70px;
+	height: 70px;
+	border-radius: 50%;
+	position: relative;
+	overflow: hidden;
+}
+
+.info {
+	margin-left: 20px;
+	margin-right: auto;
+
+	> div:first-child {
+		margin-bottom: 5px;
+	}
+}
+
+.rating {
+	margin-top: 12px;
+	height: 16px;
+}
+
+.delete {
+	cursor: pointer;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.text {
+	overflow: hidden;
+}

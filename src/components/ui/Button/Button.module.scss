@@ -1,0 +1,47 @@
+@import '@/assets/styles/_variables.scss';
+
+.main {
+	cursor: pointer;
+	user-select: none;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	padding: 0 15px;
+	height: 50px;
+	font-weight: 700;
+	color: $color-accent-dark;
+	background-color: $color-accent;
+	transition: background-color 0.2s ease-in-out, opacity 0.2s ease-in-out;
+	border: $border_width-medium solid $color-accent;
+	border-radius: $border_radius-small;
+
+	&:focus {
+		outline: none;
+	}
+}
+
+.default {
+	font-size: $font_size-body;
+}
+
+.medium {
+	font-size: $font_size-body-medium;
+}
+
+.large {
+	font-size: $font_size-subheading;
+}
+
+.rounder {
+	border-radius: $border_radius-medium;
+}
+
+.bordered {
+	background-color: white;
+}
+
+.hover {
+	&:hover {
+		background-color: white;
+	}
+}

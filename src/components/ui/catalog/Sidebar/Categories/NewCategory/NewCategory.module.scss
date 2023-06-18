@@ -1,0 +1,14 @@
+.create {
+	cursor: pointer;
+	height: 70px;
+	padding-left: 58px;
+	display: flex;
+	justify-content: flex-start;
+	align-items: center;
+	transition: opacity 0.2s ease-in-out;
+}
+
+.disabled {
+	pointer-events: none;
+	opacity: 0.5;
+}

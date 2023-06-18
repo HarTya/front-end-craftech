@@ -1,0 +1,27 @@
+@import '@/assets/styles/_variables.scss';
+
+.main {
+	width: 250px;
+	font-size: $font_size-body-medium;
+	font-weight: 600;
+	color: $color-accent;
+	padding: 0 10px;
+	border: none;
+	background-color: transparent;
+
+	&:focus {
+		outline: none;
+	}
+
+	&::placeholder {
+		color: $color-accent;
+	}
+}
+
+.accent_dark {
+	color: $color-accent-dark;
+
+	&::placeholder {
+		color: $color-accent-dark;
+	}
+}

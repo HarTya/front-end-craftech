@@ -1,0 +1,75 @@
+@import '@/assets/styles/_variables.scss';
+
+@keyframes AppearanceAnimation {
+	from {
+		opacity: 0;
+	}
+	to {
+		opacity: 1;
+	}
+}
+
+.title {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	padding: 69px 90px 61px 58px;
+}
+
+.select {
+	width: 300px;
+}
+
+.section {
+	position: relative;
+	display: flex;
+	justify-content: flex-start;
+	align-items: flex-start;
+}
+
+.observe {
+	position: absolute;
+	top: calc(100vh - $header-height);
+	left: 0;
+	z-index: -1;
+	width: 100%;
+	height: calc(100% - (100vh - $header-height));
+}
+
+.content {
+	width: calc(100% - 332px);
+	min-height: calc(100vh - $header-height);
+	padding: 0 90px 20px 93px;
+
+	&_pin {
+		margin-left: 332px;
+	}
+}
+
+.products {
+	display: flex;
+	justify-content: flex-start;
+	align-items: flex-start;
+	flex-wrap: wrap;
+}
+
+.buttons {
+	margin: 50px 0;
+	width: 100%;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	animation: AppearanceAnimation 0.4s ease-in-out;
+
+	> button {
+		width: 50px;
+
+		&:not(:last-child) {
+			margin-right: 15px;
+		}
+	}
+}
+
+.message {
+	margin-bottom: 61px;
+}

@@ -1,0 +1,75 @@
+@import '@/assets/styles/_variables.scss';
+
+.main {
+	width: 100%;
+
+	&_admin {
+		margin-top: 25px;
+
+		.image {
+			width: 100%;
+		}
+
+		.bottom {
+			width: 100%;
+		}
+	}
+}
+
+.image {
+	width: 95%;
+	min-width: 700px;
+	max-width: 1000px;
+	height: 700px;
+	position: relative;
+
+	&_button {
+		cursor: pointer;
+		position: absolute;
+		top: 20px;
+		right: 20px;
+		z-index: 10;
+		width: 50px;
+		height: 50px;
+	}
+}
+
+.bottom {
+	width: 95%;
+	min-width: 700px;
+	max-width: 1000px;
+	height: 100px;
+	overflow-y: hidden;
+	overflow-x: auto;
+	white-space: nowrap;
+	scroll-behavior: smooth;
+
+	&::-webkit-scrollbar {
+		display: none;
+	}
+
+	&_image {
+		cursor: pointer;
+		width: 100px;
+		height: 100px;
+		position: relative;
+		display: inline-block;
+		border: $border_width-thick solid $color-accent-half-transparent;
+		transition: border-color 0.2s ease-in-out;
+
+		&_active {
+			border-color: $color-accent;
+		}
+	}
+}
+
+@media screen and (max-width: 780px) {
+	.image {
+		min-width: 0;
+		height: calc(100vw - 60px);
+	}
+
+	.bottom {
+		min-width: 0;
+	}
+}

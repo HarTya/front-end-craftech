@@ -1,0 +1,102 @@
+@import '@/assets/styles/_variables.scss';
+
+.file {
+	label {
+		width: 100%;
+		height: 92px;
+		position: relative;
+		display: inline-block;
+
+		&::after {
+			cursor: pointer;
+			content: '+';
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			opacity: 0.5;
+			width: 100%;
+			height: 50px;
+			margin: 10px 0;
+			font-size: $font_size-subheading-large;
+			font-weight: 600;
+			color: $color-accent-dark;
+			border: $border_width-medium solid $color-accent;
+			border-radius: $border_radius-medium;
+		}
+	}
+
+	input {
+		display: none;
+	}
+
+	&_error {
+		label {
+			&::after {
+				border-color: $color-error;
+				color: $color-error;
+			}
+		}
+	}
+}
+
+.title {
+	display: flex;
+	justify-content: space-between;
+	align-items: flex-end;
+
+	&_switch {
+		> div:first-child {
+			max-width: calc(100% - 100px);
+		}
+	}
+}
+
+.switch {
+	cursor: pointer;
+	opacity: 0.8;
+	user-select: none;
+}
+
+.input {
+	opacity: 0.5;
+	width: 100%;
+	height: 50px;
+	padding: 15px 20px;
+	margin: 10px 0;
+	font-size: $font_size-body;
+	font-weight: 700;
+	color: $color-accent-dark;
+	border: $border_width-medium solid $color-accent;
+	border-radius: $border_radius-medium;
+	transition: opacity 0.2s ease-in-out;
+
+	&:focus {
+		outline: none;
+		opacity: 1;
+	}
+
+	&:-webkit-autofill {
+		-webkit-text-fill-color: $color-accent-dark !important;
+		-webkit-background-clip: text;
+		caret-color: $color-accent-dark;
+	}
+
+	&::placeholder {
+		color: $color-accent-dark;
+	}
+
+	&_error {
+		border-color: $color-error;
+		color: $color-error;
+
+		&:-webkit-autofill {
+			-webkit-text-fill-color: $color-error !important;
+			-webkit-background-clip: text;
+			caret-color: $color-error;
+		}
+
+		&::placeholder {
+			color: $color-error;
+		}
+	}
+}

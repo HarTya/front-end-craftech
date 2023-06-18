@@ -1,0 +1,10 @@
+.button {
+	width: 100%;
+	max-width: 360px;
+	margin-top: 34px;
+	opacity: 0.5;
+
+	&:hover {
+		opacity: 1;
+	}
+}

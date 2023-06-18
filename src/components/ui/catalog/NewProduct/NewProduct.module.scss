@@ -1,0 +1,28 @@
+@import '@/assets/styles/_variables.scss';
+
+@keyframes AppearanceAnimation {
+	from {
+		opacity: 0;
+	}
+	to {
+		opacity: 1;
+	}
+}
+
+.create {
+	cursor: pointer;
+	width: 281px;
+	height: 367px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	border-right: $color-accent solid $border_width-thin;
+	border-bottom: $color-accent solid $border_width-thin;
+	transition: opacity 0.2s ease-in-out;
+	animation: AppearanceAnimation 0.4s ease-in-out;
+}
+
+.disabled {
+	pointer-events: none;
+	opacity: 0.5;
+}

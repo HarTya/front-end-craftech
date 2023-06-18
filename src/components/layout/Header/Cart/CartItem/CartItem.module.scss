@@ -1,0 +1,64 @@
+@import '@/assets/styles/_variables.scss';
+
+.main {
+	width: 100%;
+	height: 151px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	padding-right: 40px;
+	border-right: $color-accent solid $border_width-thin;
+	border-bottom: $color-accent solid $border_width-thin;
+}
+
+.info {
+	width: calc(100% - 238px);
+	height: 100%;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	padding-right: 25px;
+}
+
+.image {
+	width: 178px;
+	height: 100%;
+	position: relative;
+}
+
+.name {
+	width: 243px;
+	height: 44px;
+	overflow: hidden;
+	margin-bottom: 8px;
+}
+
+.price {
+	width: 243px;
+	height: 39px;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+}
+
+.size {
+	margin-top: 4px;
+}
+
+@media screen and (max-width: 1024px) {
+	.main {
+		height: auto;
+		justify-content: center;
+		flex-direction: column;
+	}
+
+	.info {
+		width: 100%;
+		height: 150px;
+		padding-right: 0;
+	}
+
+	.image {
+		width: 150px;
+	}
+}

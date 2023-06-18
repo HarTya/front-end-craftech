@@ -1,0 +1,83 @@
+@import '@/assets/styles/_variables.scss';
+
+.back {
+	margin-right: 25px;
+
+	> button {
+		padding: 0;
+		width: 50px;
+	}
+}
+
+.title {
+	display: flex;
+	justify-content: flex-start;
+	align-items: center;
+	padding: 69px 58px 61px 58px;
+
+	&_back {
+		> div:last-child {
+			max-width: calc(100% - 75px);
+			overflow: hidden;
+		}
+	}
+
+	&_sidebar {
+		padding: 69px 90px 61px 58px;
+	}
+
+	&_additionalTitle {
+		display: flex;
+		justify-content: flex-start;
+		align-items: center;
+
+		&_arrow {
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			padding: 0 10px;
+		}
+	}
+}
+
+.section {
+	position: relative;
+	display: flex;
+	justify-content: flex-start;
+	align-items: flex-start;
+}
+
+.observe {
+	position: absolute;
+	top: calc(100vh - $header-height);
+	left: 0;
+	z-index: -1;
+	width: 100%;
+	height: calc(100% - (100vh - $header-height));
+}
+
+.content {
+	width: 100%;
+	padding: 0 58px 20px 58px;
+
+	&_sidebar {
+		width: calc(100% - 332px);
+		min-height: calc(100vh - $header-height);
+		padding: 0 90px 20px 93px;
+	}
+
+	&_pin {
+		margin-left: 332px;
+	}
+}
+
+.products {
+	display: flex;
+	justify-content: flex-start;
+	align-items: flex-start;
+	flex-wrap: wrap;
+}
+
+.message {
+	margin-bottom: 61px;
+}

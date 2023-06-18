@@ -1,0 +1,27 @@
+@keyframes AppearanceAnimation {
+	from {
+		opacity: 0;
+	}
+	to {
+		opacity: 1;
+	}
+}
+
+.addToCart {
+	width: 85%;
+	max-width: 250px;
+	padding: 0 10px;
+	margin-right: 3.13%;
+	animation: AppearanceAnimation 0.4s ease-in-out;
+}
+
+.select {
+	width: 100%;
+	max-width: 300px;
+	margin-right: auto;
+}
+
+.favorite {
+	margin-left: 3.13%;
+	animation: AppearanceAnimation 0.4s ease-in-out;
+}

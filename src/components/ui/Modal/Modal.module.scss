@@ -1,0 +1,76 @@
+@import '@/assets/styles/_variables.scss';
+
+@keyframes AppearanceAnimation {
+	from {
+		opacity: 0;
+	}
+	to {
+		opacity: 1;
+	}
+}
+
+.section {
+	position: fixed;
+	top: $header-height;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	z-index: 10;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	background-color: rgba(0, 0, 0, 0.2);
+	animation: AppearanceAnimation 0.4s ease-in-out;
+	transition: opacity 0.4s ease-in-out;
+
+	&_disappearance {
+		pointer-events: none;
+		opacity: 0;
+	}
+}
+
+.main {
+	width: 962px;
+	max-width: 95%;
+	max-height: 95%;
+	overflow-y: auto;
+	padding: 46px 52px 52px 52px;
+	background: white;
+	border: $border_width-medium solid $color-accent-half-transparent;
+	border-radius: $border_radius-large;
+
+	&::-webkit-scrollbar {
+		display: none;
+	}
+}
+
+.top {
+	width: 100%;
+	height: 61px;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+}
+
+.title {
+	max-width: calc(100% - 65px);
+}
+
+.close {
+	cursor: pointer;
+	height: 100%;
+	margin-left: 25px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.content {
+	margin-top: 25px;
+}
+
+@media screen and (max-width: 768px) {
+	.main {
+		padding: 46px 26px 52px 26px;
+	}
+}

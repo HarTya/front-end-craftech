@@ -1,0 +1,36 @@
+.open {
+	cursor: pointer;
+	user-select: none;
+	height: 100%;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.rating {
+	margin-top: 8px;
+	margin-bottom: 19.5px;
+	display: flex;
+	justify-content: flex-start;
+	align-items: center;
+}
+
+.star {
+	cursor: pointer;
+	width: 60px;
+	height: 60px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.text {
+	margin-top: 10px;
+	width: 100%;
+}
+
+.button {
+	margin: 32px auto 0 auto;
+	width: 100%;
+	max-width: 360px;
+}

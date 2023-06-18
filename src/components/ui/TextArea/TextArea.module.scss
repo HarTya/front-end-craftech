@@ -1,0 +1,36 @@
+@import '@/assets/styles/_variables.scss';
+
+.main {
+	position: relative;
+	width: 250px;
+	height: 153px;
+	border: $border_width-medium solid $color-accent-half-transparent;
+	border-radius: $border_radius-medium;
+
+	> textarea {
+		position: absolute;
+		top: -$border_width-medium;
+		left: -$border_width-medium;
+		right: -$border_width-medium;
+		bottom: -$border_width-medium;
+		font-size: $font_size-body;
+		font-weight: 700;
+		color: $color-accent-dark;
+		padding: 14px 22px;
+		background-color: transparent;
+		border: none;
+		border-radius: $border_radius-medium;
+		resize: none;
+		opacity: 0.5;
+		transition: opacity 0.2s ease-in-out;
+
+		&:focus {
+			outline: none;
+			opacity: 1;
+		}
+
+		&::-webkit-scrollbar {
+			display: none;
+		}
+	}
+}
