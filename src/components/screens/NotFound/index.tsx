@@ -14,13 +14,20 @@ const NotFound: FC = () => {
 	return (
 		<section className={styles.section}>
 			<div className={styles.main}>
-				<Text nowrap>Сторінку не знайдено</Text>
+				<Text topline nowrap>
+					Сторінку не знайдено
+				</Text>
 				<Text className={styles.text} size='subheading' color='accent'>
 					Будь ласка, перевірте правильність URL-адреси та спробуйте ще раз.
 					Якщо у вас виникають питання, звертайтеся до нашої головної сторінки,
 					щоб знайти потрібну інформацію.
 				</Text>
-				<Button onClick={() => replace(PAGES.home)} size='medium' hover>
+				<Button
+					className={styles.button}
+					onClick={() => replace(PAGES.home)}
+					size='medium'
+					hover
+				>
 					Перейти на головну сторінку
 				</Button>
 			</div>
