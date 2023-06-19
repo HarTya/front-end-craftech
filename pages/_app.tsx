@@ -1,4 +1,5 @@
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
+import { Analytics } from '@vercel/analytics/react'
 import { AppProps } from 'next/app'
 import { Montserrat } from 'next/font/google'
 import { Provider } from 'react-redux'
@@ -50,6 +51,7 @@ export default function App({
 							}
 						`}</style>
 						<Component {...pageProps} />
+						<Analytics />
 					</AuthProvider>
 				</PersistGate>
 			</Provider>
