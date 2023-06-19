@@ -135,8 +135,6 @@ const ProductAdmin: FC<{
 			.catch(error => {
 				setIsLoading(false)
 				setError(catchErrorMessage(error))
-				if (catchErrorMessage(error).includes('не знайдено'))
-					toast.error(catchErrorMessage(error))
 			})
 	}
 
@@ -302,7 +300,8 @@ const ProductAdmin: FC<{
 					placeholder={!data.name ? 'Новий товар' : data.name}
 					error={
 						errors.name?.message ||
-						(error.toLowerCase().includes('назв') ? error : '')
+						(error.toLowerCase().includes('назв') ? error : '') ||
+						(error.includes('не знайдено') ? error : '')
 					}
 					disabled={isLoading}
 				/>
