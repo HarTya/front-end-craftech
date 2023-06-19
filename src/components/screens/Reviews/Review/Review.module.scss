@@ -1,10 +1,27 @@
 @import '@/assets/styles/_variables.scss';
 
+@keyframes AppearanceAnimation {
+	from {
+		opacity: 0;
+	}
+	to {
+		opacity: 1;
+	}
+}
+
 .main {
 	width: 100%;
-	padding: 30px 6.1%;
+	max-width: 760px;
+	padding: 30px 45px;
 	border: $border_width-medium solid $color-accent-half-transparent;
 	border-radius: $border_radius-medium;
+	animation: AppearanceAnimation 0.4s ease-in-out;
+	transition: opacity 0.2s ease-in-out;
+
+	&_deleted {
+		pointer-events: none;
+		opacity: 0.5;
+	}
 
 	&:not(:last-child) {
 		margin-bottom: 25px;

@@ -1,14 +1,5 @@
 @import '@/assets/styles/_variables.scss';
 
-@keyframes AppearanceAnimation {
-	from {
-		opacity: 0;
-	}
-	to {
-		opacity: 1;
-	}
-}
-
 .back {
 	margin-right: 25px;
 
@@ -37,68 +28,4 @@
 	align-items: center;
 	flex-direction: column;
 	padding: 0 60px 61px 60px;
-}
-
-.item {
-	width: 100%;
-	max-width: 760px;
-	display: flex;
-	justify-content: flex-start;
-	align-items: flex-start;
-	flex-direction: column;
-	padding: 30px 45px;
-	border: $border_width-medium solid $color-accent-half-transparent;
-	border-radius: $border_radius-medium;
-	animation: AppearanceAnimation 0.4s ease-in-out;
-	transition: opacity 0.2s ease-in-out;
-
-	&_deleted {
-		pointer-events: none;
-		opacity: 0.5;
-	}
-
-	&:not(:last-child) {
-		margin-bottom: 25px;
-	}
-
-	&_top {
-		width: 100%;
-		display: flex;
-		justify-content: center;
-		align-items: center;
-		margin-bottom: 20px;
-	}
-
-	&_image {
-		width: 70px;
-		height: 70px;
-		border-radius: 50%;
-		position: relative;
-		overflow: hidden;
-	}
-
-	&_info {
-		margin-left: 20px;
-		margin-right: auto;
-
-		> div:first-child {
-			margin-bottom: 5px;
-		}
-	}
-
-	&_rating {
-		margin-top: 12px;
-		height: 16px;
-	}
-
-	&_delete {
-		cursor: pointer;
-		display: flex;
-		justify-content: center;
-		align-items: center;
-	}
-
-	&_text {
-		overflow: hidden;
-	}
 }

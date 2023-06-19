@@ -1,6 +1,7 @@
-import { useMutation, useQueryClient } from '@tanstack/react-query'
+import { useMutation } from '@tanstack/react-query'
+import clsx from 'clsx'
 import Image from 'next/legacy/image'
-import { FC } from 'react'
+import { Dispatch, FC, SetStateAction } from 'react'
 import { TailSpin } from 'react-loader-spinner'
 import { Rating } from 'react-simple-star-rating'
 import { toast } from 'react-toastify'
@@ -10,8 +11,6 @@ import TrashIcon from '@/ui/icons/Trash/TrashIcon'
 
 import { COLORS } from '@/config/variables.config'
 
-import { useAuth } from '@/hooks/useAuth'
-
 import { IReviewObjectUser } from '@/types/review.interface'
 import { EnumUserRole } from '@/types/user.interface'
 
@@ -20,20 +19,17 @@ import { catchErrorMessage } from '@/api/api.helper'
 import styles from './Review.module.scss'
 import { ReviewService } from '@/services/review.service'
 
-const Review: FC<{ data: IReviewObjectUser }> = ({ data }) => {
-	const queryCache = useQueryClient()
-
-	const { user } = useAuth()
-
-	const isAuthor = data.user.id === user?.id
-
+const Review: FC<{
+	data: IReviewObjectUser
+	deleted: number[]
+	setDeleted: Dispatch<SetStateAction<number[]>>
+}> = ({ data, deleted, setDeleted }) => {
 	const { mutate, isLoading } = useMutation(
-		['delete review'],
-		() => ReviewService.deleteReviewUser(data.id),
+		['delete review admin'],
+		() => ReviewService.deleteReview(data.id),
 		{
-			onSuccess() {
-				queryCache.invalidateQueries(['get profile'])
-				queryCache.invalidateQueries(['get reviews by product'])
+			onSuccess({ data }) {
+				setDeleted([...deleted, data.id])
 				toast.success('Відгук видалено!')
 			},
 			onError(error) {
@@ -43,7 +39,11 @@ const Review: FC<{ data: IReviewObjectUser }> = ({ data }) => {
 	)
 
 	return (
-		<div className={styles.main}>
+		<div
+			className={clsx(styles.main, {
+				[styles.main_deleted]: deleted.find(id => id === data.id)
+			})}
+		>
 			<div className={styles.top}>
 				<div className={styles.image}>
 					<Image
@@ -78,16 +78,12 @@ const Review: FC<{ data: IReviewObjectUser }> = ({ data }) => {
 						/>
 					</div>
 				</div>
-				{isAuthor && (
-					<>
-						{isLoading ? (
-							<TailSpin width={40} height={40} color={COLORS.accentDark} />
-						) : (
-							<div onClick={() => mutate()} className={styles.delete}>
-								<TrashIcon />
-							</div>
-						)}
-					</>
+				{isLoading ? (
+					<TailSpin width={40} height={40} color={COLORS.accentDark} />
+				) : (
+					<div onClick={() => mutate()} className={styles.delete}>
+						<TrashIcon />
+					</div>
 				)}
 			</div>
 			<Text size='body' color='accent-dark' prewrap className={styles.text}>
