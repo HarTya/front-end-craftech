@@ -326,13 +326,13 @@ const Profile: FC<{ data: IProfileObject }> = ({ data }) => {
 								validate: (value: string) => {
 									if (
 										!validator.isStrongPassword(value, {
-											minLowercase: 0,
-											minUppercase: 1,
+											minLowercase: 1,
+											minUppercase: 0,
 											minNumbers: 1,
 											minSymbols: 0
 										})
 									) {
-										return 'Новий пароль недостатньо надійний (принаймні 1 велика літера англійського алфавіту та 1 цифра)'
+										return 'Новий пароль недостатньо надійний (принаймні 1 мала літера англійського алфавіту та 1 цифра)'
 									}
 								},
 								minLength: {
