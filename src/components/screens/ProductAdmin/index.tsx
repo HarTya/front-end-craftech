@@ -313,8 +313,8 @@ const ProductAdmin: FC<{
 							message: 'Опис товару має бути не коротшим за 10 символів'
 						},
 						maxLength: {
-							value: 1000,
-							message: 'Опис товару має бути не довшим за 1000 символів'
+							value: 5000,
+							message: 'Опис товару має бути не довшим за 5000 символів'
 						}
 					})}
 					className={styles.field}

@@ -51,7 +51,7 @@ const Cart: FC<{ className: string }> = ({ className }) => {
 								<div className={styles.main_bottom}>
 									<div>
 										<Text size='body-small' color='accent-dark'>
-											Загальна сума
+											Загальна вартість
 										</Text>
 										<Text color='accent'>{formatToCurrency(total)}</Text>
 									</div>
