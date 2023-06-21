@@ -108,13 +108,13 @@ const Auth: FC = () => {
 								if (
 									!isLogin &&
 									!validator.isStrongPassword(value, {
-										minLowercase: 0,
-										minUppercase: 1,
+										minLowercase: 1,
+										minUppercase: 0,
 										minNumbers: 1,
 										minSymbols: 0
 									})
 								) {
-									return 'Пароль недостатньо надійний (принаймні 1 велика літера англійського алфавіту та 1 цифра)'
+									return 'Пароль недостатньо надійний (принаймні 1 мала літера англійського алфавіту та 1 цифра)'
 								}
 							},
 							minLength: {
