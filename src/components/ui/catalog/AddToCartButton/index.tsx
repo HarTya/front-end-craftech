@@ -1,4 +1,5 @@
 import { FC } from 'react'
+import { toast } from 'react-toastify'
 
 import Button from '@/ui/Button'
 
@@ -24,18 +25,25 @@ const AddToCartButton: FC<IAddToCartButton> = ({
 		<Button
 			className={className}
 			size='medium'
-			onClick={() =>
-				currentProduct
-					? removeFromCart({ id: currentProduct.id })
-					: size
-					? addToCart({
-							product,
-							size,
-							quantity: 1,
-							price: product.price
-					  })
-					: setError(true)
-			}
+			onClick={() => {
+				if (currentProduct) {
+					removeFromCart({ id: currentProduct.id })
+					toast.success('Товар видалено з кошика!')
+				} else if (size) {
+					addToCart({
+						product,
+						size,
+						quantity: 1,
+						price: product.price
+					})
+					toast.success('Товар додано до кошика!')
+				} else {
+					setError(true)
+					toast.error(
+						'Будь ласка, оберіть розмір товару, щоб додати його до кошика'
+					)
+				}
+			}}
 		>
 			{currentProduct ? 'У кошику' : 'У кошик'}
 		</Button>

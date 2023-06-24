@@ -6,21 +6,19 @@ import Text from '@/ui/Text'
 
 import { PAGES } from '@/config/pages.config'
 
-import styles from './NotFound.module.scss'
+import styles from './Thanks.module.scss'
 
-const NotFound: FC = () => {
+const Thanks: FC = () => {
 	const { replace } = useRouter()
 
 	return (
 		<section className={styles.section}>
 			<div className={styles.main}>
 				<Text topline nowrap>
-					Сторінку не знайдено
+					Дякуємо за замовлення!
 				</Text>
 				<Text className={styles.text} size='subheading' color='accent'>
-					Будь ласка, перевірте правильність URL-адреси та спробуйте ще раз.
-					Якщо у Вас виникають питання, звертайтеся до нашої головної сторінки,
-					щоб знайти потрібну інформацію.
+					Найближчим часом з Вами зв'яжуться для уточнення деталей замовлення.
 				</Text>
 				<Button
 					className={styles.button}
@@ -35,4 +33,4 @@ const NotFound: FC = () => {
 	)
 }
 
-export default NotFound
+export default Thanks

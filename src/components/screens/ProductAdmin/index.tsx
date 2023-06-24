@@ -47,8 +47,9 @@ const ProductAdmin: FC<{
 
 	const [error, setError] = useState('')
 
-	const [categorySelectError, setCategorySelectError] = useState(false)
-	const [subcategorySelectError, setSubcategorySelectError] = useState(false)
+	const [isCategorySelectError, setIsCategorySelectError] = useState(false)
+	const [isSubcategorySelectError, setIsSubcategorySelectError] =
+		useState(false)
 
 	const [selectedCategory, setSelectedCategory] = useState('')
 
@@ -90,13 +91,6 @@ const ProductAdmin: FC<{
 	const [images, setImages] = useState(getValues('images'))
 	const [newImage, setNewImage] = useState('')
 
-	useEffect(() => {
-		const value = Math.round(getValues('price'))
-		setValue('price', value)
-
-		if (isNaN(value) || value < 1 || value > 99999) setValue('price', 0)
-	}, [watch('price')])
-
 	const onSubmit: SubmitHandler<IProductData> = data => {
 		setIsLoading(true)
 
@@ -111,7 +105,8 @@ const ProductAdmin: FC<{
 		if (categoryId) data.categoryId = categoryId
 		else {
 			setIsLoading(false)
-			setCategorySelectError(true)
+			setIsCategorySelectError(true)
+			toast.error('Будь ласка, оберіть категорію')
 			return
 		}
 
@@ -122,7 +117,8 @@ const ProductAdmin: FC<{
 		if (subcategoryId) data.subcategoryId = subcategoryId
 		else {
 			setIsLoading(false)
-			setSubcategorySelectError(true)
+			setIsSubcategorySelectError(true)
+			toast.error('Будь ласка, оберіть підкатегорію')
 			return
 		}
 
@@ -197,7 +193,7 @@ const ProductAdmin: FC<{
 		if (
 			getValues('name').trim() !== data.name ||
 			getValues('description').trim() !== data.description ||
-			getValues('price') !== data.price ||
+			+getValues('price') !== data.price ||
 			getValues('status').trim() !== data.status ||
 			JSON.stringify(images) !== JSON.stringify(data.images) ||
 			getValues('sizes').trim() !== data.sizes ||
@@ -262,8 +258,9 @@ const ProductAdmin: FC<{
 						emptyMessage='Категорії відсутні'
 						options={categories.map(category => category.name)}
 						setSelectedOptionForeign={setSelectedCategory}
-						error={categorySelectError}
-						setError={setCategorySelectError}
+						error={isCategorySelectError}
+						setError={setIsCategorySelectError}
+						disabled={isLoading}
 					/>
 				</div>
 				{selectedCategory && (
@@ -277,8 +274,9 @@ const ProductAdmin: FC<{
 							emptyMessage='Підкатегорії відсутні'
 							options={subcategories.map(subcategory => subcategory.name)}
 							setSelectedOptionForeign={setSelectedSubcategory}
-							error={subcategorySelectError}
-							setError={setSubcategorySelectError}
+							error={isSubcategorySelectError}
+							setError={setIsSubcategorySelectError}
+							disabled={isLoading}
 						/>
 					</div>
 				)}
@@ -328,11 +326,23 @@ const ProductAdmin: FC<{
 					disabled={isLoading}
 				/>
 				<Field
-					{...formRegister('price')}
+					{...formRegister('price', {
+						required: 'Вартість товару не вказано',
+						min: {
+							value: 1,
+							message: 'Вартість товару не повинна бути менше 1 гривні'
+						},
+						max: {
+							value: 99999,
+							message: 'Вартість товару не повинна перевищувати 99999 гривень'
+						}
+					})}
 					className={styles.field}
+					type='number'
 					title='Вартість товару'
 					autoComplete='off'
-					error={error.includes('Вартість товару') ? error : ''}
+					placeholder={String(data.price)}
+					error={errors.price?.message}
 					disabled={isLoading}
 				/>
 				<Field

@@ -42,23 +42,12 @@ const Auth: FC = () => {
 
 	const {
 		register: formRegister,
-		getValues,
-		setValue,
 		handleSubmit,
 		formState: { errors },
 		watch
 	} = useForm<AuthorizationData>({
 		mode: 'onChange'
 	})
-
-	useEffect(() => {
-		const countryCode = !getValues('phone').includes('+380') ? '+380' : ''
-		const phoneNumber = getValues('phone').includes('+380')
-			? getValues('phone')
-			: ''
-
-		setValue('phone', `${countryCode + phoneNumber}`)
-	}, [watch('phone')])
 
 	const onSubmit: SubmitHandler<AuthorizationData> = async data => {
 		authorization({ type, data })
@@ -84,7 +73,7 @@ const Auth: FC = () => {
 						{...formRegister('phone', {
 							required: 'Номер телефону не вказано',
 							pattern: {
-								value: /^\+38(0\d{9})$/,
+								value: /^0\d{9}$/,
 								message: 'Недійсний номер телефону'
 							}
 						})}
@@ -92,8 +81,9 @@ const Auth: FC = () => {
 						type='tel'
 						title='Номер телефону'
 						autoComplete='tel'
-						placeholder='+380123456789'
+						placeholder='0123456789'
 						error={errors.phone?.message || error}
+						prefix='+38'
 						disabled={isLoading}
 					/>
 					<Field
@@ -159,7 +149,7 @@ const Auth: FC = () => {
 									pattern: {
 										value: /^[А-ЩЬЮЯҐЄІЇ][а-щьюяґєії']*$/,
 										message:
-											'Прізвище повинно починатися з великої літери, містити лише українські літери та бути без пробілів'
+											'Прізвище повинно починатися з великої літери, містити лише українські символи та бути без пробілів'
 									},
 									minLength: {
 										value: 3,
@@ -184,7 +174,7 @@ const Auth: FC = () => {
 									pattern: {
 										value: /^[А-ЩЬЮЯҐЄІЇ][а-щьюяґєії']*$/,
 										message:
-											"Ім'я повинно починатися з великої літери, містити лише українські літери та бути без пробілів"
+											"Ім'я повинно починатися з великої літери, містити лише українські символи та бути без пробілів"
 									},
 									minLength: {
 										value: 2,

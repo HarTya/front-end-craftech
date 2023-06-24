@@ -1,6 +1,6 @@
 import { IUserObject } from './user.interface'
 
-interface IReviewObject {
+export interface IReviewObject {
 	id: number
 	createdAt: string
 	rating: number
@@ -26,7 +26,6 @@ export interface IReviewObjectProduct extends IReviewObject {
 		id: number
 		name: string
 		slug: string
-		description: string
 		price: number
 		images: string[]
 	}

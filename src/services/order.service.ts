@@ -1,14 +1,28 @@
-import { IOrder } from '@/types/order.interface'
+import { IOrderObject } from '@/types/order.interface'
 
 import { EnumEntitiesBaseUrl } from '@/api/api.enum'
 import { configUrl } from '@/api/api.helper'
-import { instance } from '@/api/api.interceptor'
+import { axiosClassic, instance } from '@/api/api.interceptor'
+
+import {
+	IOrderData,
+	IOrderUnauthorizedData
+} from './types/order-data.interface'
 
 export const OrderService = {
-	async getAllOrders() {
-		return instance<IOrder[]>({
+	async placeOrder(data: IOrderData) {
+		return instance<IOrderObject>({
 			url: configUrl(EnumEntitiesBaseUrl.ORDERS, '/'),
-			method: 'GET'
+			method: 'POST',
+			data
+		})
+	},
+
+	async placeOrderUnauthorized(data: IOrderUnauthorizedData) {
+		return axiosClassic<IOrderObject>({
+			url: configUrl(EnumEntitiesBaseUrl.ORDERS, '/unauthorized'),
+			method: 'POST',
+			data
 		})
 	}
 }

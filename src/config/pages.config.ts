@@ -6,7 +6,8 @@ export const PAGES = {
 	profile: '/profile',
 	admin: '/admin',
 	reviews: '/reviews',
-	statistics: '/statistics'
+	statistics: '/statistics',
+	thanks: '/thanks'
 }
 
 const DYNAMIC_PAGES = {

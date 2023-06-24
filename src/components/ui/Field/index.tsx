@@ -14,7 +14,10 @@ import { IField } from './field.interface'
 const Field: ForwardRefExoticComponent<
 	IField & RefAttributes<HTMLInputElement>
 > = forwardRef<HTMLInputElement, IField>(
-	({ title, error, className, type, spellCheck = false, ...rest }, ref) => {
+	(
+		{ title, error, prefix, className, type, spellCheck = false, ...rest },
+		ref
+	) => {
 		const [isPasswordShown, setIsPasswordShown] = useState(false)
 
 		return (
@@ -47,15 +50,26 @@ const Field: ForwardRefExoticComponent<
 							</div>
 						)}
 					</div>
-					<input
-						ref={ref}
-						className={clsx(styles.input, {
-							[styles.input_error]: !!error
+					<div
+						className={clsx(styles.main, {
+							[styles.main_error]: !!error
 						})}
-						type={isPasswordShown ? 'string' : type}
-						spellCheck={spellCheck}
-						{...rest}
-					/>
+					>
+						{prefix && (
+							<Text className={styles.prefix} size='body' color='accent-dark'>
+								{prefix}
+							</Text>
+						)}
+						<input
+							ref={ref}
+							className={clsx(styles.input, {
+								[styles.input_prefix]: prefix
+							})}
+							type={isPasswordShown ? 'string' : type}
+							spellCheck={spellCheck}
+							{...rest}
+						/>
+					</div>
 				</label>
 				{error && (
 					<Text size='caption-large' color='error' weight='semibold'>

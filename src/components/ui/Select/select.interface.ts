@@ -1,5 +1,7 @@
 import { Dispatch, SetStateAction } from 'react'
 
+import { EnumOrderPickupType } from '@/types/order.interface'
+
 import { EnumProductsSort } from '@/services/types/product-data.interface'
 
 export interface ISelect {
@@ -13,6 +15,8 @@ export interface ISelect {
 	setError?: Dispatch<SetStateAction<boolean>>
 	sortType?: EnumProductsSort
 	setSortType?: Dispatch<SetStateAction<EnumProductsSort>>
+	pickupType?: EnumOrderPickupType
+	setPickupType?: Dispatch<SetStateAction<EnumOrderPickupType>>
 	disabled?: boolean
 	className?: string
 }

@@ -15,13 +15,13 @@ const Modal: FC<PropsWithChildren<IModal>> = ({
 	className,
 	children
 }) => {
-	const [readyToClose, setReadyToClose] = useState(false)
+	const [isReadyToClose, setIsReadyToClose] = useState(false)
 	const [close, setClose] = useState(false)
 
 	useEffect(() => {
 		document.body.classList.add('no-scroll')
 
-		setTimeout(() => setReadyToClose(true), 400)
+		setTimeout(() => setIsReadyToClose(true), 400)
 
 		return () => {
 			document.body.classList.remove('no-scroll')
@@ -29,7 +29,7 @@ const Modal: FC<PropsWithChildren<IModal>> = ({
 	}, [])
 
 	const closeModal = () => {
-		if (readyToClose) {
+		if (isReadyToClose) {
 			setClose(true)
 
 			setTimeout(() => setIsOpen(false), 400)

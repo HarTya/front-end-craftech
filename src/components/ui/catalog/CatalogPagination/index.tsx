@@ -42,13 +42,6 @@ const CatalogPagination: FC<ICatalogPagination> = ({ title, data }) => {
 		}
 	)
 
-	const [pagesCount, setPagesCount] = useState(1)
-
-	useEffect(() => {
-		if (pagesCount === 1)
-			setPagesCount(Math.round(response.length / response.products.length))
-	}, [])
-
 	const { ref, inView } = useInView({
 		threshold: 0
 	})
@@ -83,7 +76,7 @@ const CatalogPagination: FC<ICatalogPagination> = ({ title, data }) => {
 							</div>
 							<div className={styles.buttons}>
 								{Array.from({
-									length: pagesCount
+									length: Math.ceil(response.length / VARS.productsPerPage)
 								}).map((_, index) => {
 									const pageNumber = index + 1
 									return (

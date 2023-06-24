@@ -1,19 +1,13 @@
-import { useQuery } from '@tanstack/react-query'
-
-import { OrderService } from '@/services/order.service'
+import { useProfile } from './useProfile'
 
 export const useOrders = () => {
-	const { data, isLoading, isError } = useQuery(
-		['get orders'],
-		() => OrderService.getAllOrders(),
-		{
-			select: ({ data }) => data
-		}
-	)
+	const { profile, isLoading, isError } = useProfile()
+
+	const orders = profile?.orders
 
 	return {
-		orders: data,
+		orders,
 		isLoading,
-		discount: !isLoading && !isError && !data?.length
+		discount: !isLoading && !isError && !orders?.length
 	}
 }

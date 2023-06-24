@@ -21,7 +21,7 @@
 }
 
 .error {
-	box-shadow: 0 0 0 $border_width-medium inset $color-error;
+	box-shadow: 0 0 0 $border_width-medium inset $color-error !important;
 }
 
 .selected {
@@ -39,9 +39,8 @@
 	}
 
 	.options {
-		transition: opacity 0.2s ease-in-out;
-		opacity: 1;
-		pointer-events: all;
+		display: block;
+		animation: AppearanceAnimation 0.2s ease-in-out;
 	}
 }
 
@@ -80,14 +79,19 @@
 }
 
 .options {
-	opacity: 0;
-	pointer-events: none;
+	display: none;
+	max-height: 250px;
+	overflow-y: auto;
 	position: absolute;
 	top: 100%;
 	left: 0;
 	right: 0;
-	z-index: 1;
+	z-index: 2;
 	border-radius: 0 0 $border_radius-small $border_radius-small;
+
+	&::-webkit-scrollbar {
+		display: none;
+	}
 
 	&_empty {
 		cursor: default;

@@ -22,17 +22,99 @@
 		z-index: 1;
 		background-color: white;
 		display: flex;
-		justify-content: space-between;
+		justify-content: center;
 		align-items: center;
 		height: 129px;
 		padding: 0 40px 0 52px;
 		border: $border_width-medium solid $color-accent-half-transparent;
 		border-radius: $border_radius-medium;
 
-		> button {
+		> div {
 			width: 100%;
-			max-width: 370px;
-			padding: 0;
+			display: flex;
+			justify-content: space-between;
+			align-items: center;
+			margin-top: auto;
+			padding-bottom: 20px;
+
+			> button {
+				width: 100%;
+				max-width: 370px;
+				padding: 0;
+			}
+		}
+
+		&_open {
+			height: auto !important;
+			flex-direction: column;
+		}
+
+		&_close {
+			cursor: pointer;
+			width: 100%;
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			padding: 20px 0 35px 0;
+		}
+	}
+}
+
+.form {
+	width: 100%;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	margin-bottom: 25px;
+
+	> div {
+		width: 50%;
+		max-width: 366px;
+
+		&:first-child {
+			margin-right: 22px;
+		}
+	}
+}
+
+.select {
+	margin-bottom: 10px;
+
+	> div:last-child {
+		margin-top: 10px;
+		width: 100%;
+		box-shadow: 0 0 0 $border_width-medium inset $color-accent-half-transparent;
+		animation: none;
+
+		> div:last-child {
+			> div {
+				border-color: $color-accent-half-transparent;
+
+				&:hover {
+					background-color: white;
+				}
+			}
+		}
+	}
+}
+
+.field {
+	position: relative;
+
+	> div:last-child {
+		cursor: default;
+		position: absolute;
+		left: 0;
+		right: 0;
+		bottom: -40px;
+		z-index: 1;
+		height: 38px;
+		min-height: 38px;
+		overflow: hidden;
+		background: white;
+
+		&:hover {
+			height: auto;
 		}
 	}
 }
@@ -54,13 +136,28 @@
 		}
 
 		&_bottom {
-			justify-content: center;
-			align-items: flex-start;
-			flex-direction: column;
 			height: 201px;
 
-			> button {
-				margin: 21px auto 0 auto;
+			> div {
+				justify-content: center;
+				align-items: flex-start;
+				flex-direction: column;
+
+				> button {
+					margin: 21px auto 0 auto;
+				}
+			}
+		}
+	}
+}
+
+@media screen and (max-height: 824px),
+	screen and (max-width: 1024px) and (max-height: 947px) {
+	.main {
+		&_bottom {
+			&_open {
+				top: 0;
+				bottom: auto;
 			}
 		}
 	}

@@ -1,4 +1,4 @@
-import { IOrder } from './order.interface'
+import { IOrderObject } from './order.interface'
 import { IProductObject } from './product.interface'
 import { IReviewObjectProduct } from './review.interface'
 
@@ -30,6 +30,6 @@ export interface IProfileObject extends IUserObject {
 	favorites: IProductObject[]
 	phone: string
 	lastName: string
-	orders: IOrder[]
+	orders: IOrderObject[]
 	reviews: IReviewObjectProduct[]
 }

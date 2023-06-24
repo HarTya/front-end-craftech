@@ -43,24 +43,23 @@ const FavoriteButton: FC<IFavoriteButton> = ({
 	)
 
 	return variant === 'accent' ? (
-		<div className={clsx(styles.main, className)} onClick={() => mutate()}>
-			{isLoading ? (
-				<TailSpin width={30} height={30} color={COLORS.accent} />
-			) : isExists ? (
-				<FavoriteIconAccent fill />
-			) : (
-				<FavoriteIconAccent />
-			)}
-		</div>
+		isLoading ? (
+			<TailSpin width={30} height={30} color={COLORS.accent} />
+		) : (
+			<div className={clsx(styles.main, className)} onClick={() => mutate()}>
+				{isExists ? <FavoriteIconAccent fill /> : <FavoriteIconAccent />}
+			</div>
+		)
+	) : isLoading ? (
+		<TailSpin
+			wrapperClass={className}
+			width={35}
+			height={35}
+			color={COLORS.accentDark}
+		/>
 	) : (
 		<div className={clsx(styles.main, className)} onClick={() => mutate()}>
-			{isLoading ? (
-				<TailSpin width={35} height={35} color={COLORS.accentDark} />
-			) : isExists ? (
-				<FavoriteIconAccentDark fill />
-			) : (
-				<FavoriteIconAccentDark />
-			)}
+			{isExists ? <FavoriteIconAccentDark fill /> : <FavoriteIconAccentDark />}
 		</div>
 	)
 }

@@ -4,6 +4,8 @@ import { FC, useEffect, useState } from 'react'
 import Text from '@/ui/Text'
 import ArrowIconDownLarge from '@/ui/icons/Arrow/ArrowIconDownLarge'
 
+import { EnumOrderPickupType } from '@/types/order.interface'
+
 import styles from './Select.module.scss'
 import { ISelect } from './select.interface'
 import { EnumProductsSort } from '@/services/types/product-data.interface'
@@ -19,6 +21,8 @@ const Select: FC<ISelect> = ({
 	setError,
 	sortType,
 	setSortType,
+	pickupType,
+	setPickupType,
 	disabled = false,
 	className
 }) => {
@@ -52,6 +56,17 @@ const Select: FC<ISelect> = ({
 				break
 		}
 	}, [sortType])
+
+	useEffect(() => {
+		switch (pickupType) {
+			case EnumOrderPickupType.STORE:
+				setSelectedOption(options[0])
+				break
+			case EnumOrderPickupType.POST_OFFICE:
+				setSelectedOption(options[1])
+				break
+		}
+	}, [pickupType])
 
 	return (
 		<div
@@ -116,6 +131,29 @@ const Select: FC<ISelect> = ({
 													? options[2]
 													: EnumProductsSort[key] === EnumProductsSort.OLDEST
 													? options[3]
+													: null}
+											</Text>
+										</div>
+									)
+						  )
+						: pickupType && setPickupType
+						? (
+								Object.keys(EnumOrderPickupType) as Array<
+									keyof typeof EnumOrderPickupType
+								>
+						  ).map(
+								key =>
+									EnumOrderPickupType[key] !== pickupType && (
+										<div
+											key={EnumOrderPickupType[key]}
+											onClick={() => setPickupType(EnumOrderPickupType[key])}
+										>
+											<Text size='body' color='accent-dark' nowrap>
+												{EnumOrderPickupType[key] === EnumOrderPickupType.STORE
+													? options[0]
+													: EnumOrderPickupType[key] ===
+													  EnumOrderPickupType.POST_OFFICE
+													? options[1]
 													: null}
 											</Text>
 										</div>

@@ -1,17 +1,22 @@
 import { ICartItem } from './cart.interface'
-import { IUser } from './user.interface'
 
-enum EnumOrderStatus {
-	PENDING = 'PENDING',
-	SHIPPED = 'SHIPPED',
-	DELIVERED = 'DELIVERED'
+export enum EnumOrderPickupType {
+	STORE = 'STORE',
+	POST_OFFICE = 'POST_OFFICE'
 }
 
-export interface IOrder {
+export interface IOrderObject {
 	id: number
 	createdAt: string
-	status: EnumOrderStatus
+	pickupType: EnumOrderPickupType
+	day: string
+	time: string
+	city: string
+	postOfficeNumber: number
 	items: ICartItem[]
 	total: number
-	user: IUser
+	phone: string
+	lastName: string
+	firstName: string
+	userId: number
 }

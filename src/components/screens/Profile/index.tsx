@@ -63,15 +63,6 @@ const Profile: FC<{ data: IProfileObject }> = ({ data }) => {
 
 	const [image, setImage] = useState(getValues('avatarPath'))
 
-	useEffect(() => {
-		const countryCode = !getValues('phone').includes('+380') ? '+380' : ''
-		const phoneNumber = getValues('phone').includes('+380')
-			? getValues('phone')
-			: ''
-
-		setValue('phone', `${countryCode + phoneNumber}`)
-	}, [watch('phone')])
-
 	const onSubmit: SubmitHandler<ProfileData> = async data => {
 		setIsLoading(true)
 
@@ -202,7 +193,7 @@ const Profile: FC<{ data: IProfileObject }> = ({ data }) => {
 							{...formRegister('phone', {
 								required: 'Номер телефону не вказано',
 								pattern: {
-									value: /^\+38(0\d{9})$/,
+									value: /^0\d{9}$/,
 									message: 'Недійсний номер телефону'
 								}
 							})}
@@ -215,6 +206,7 @@ const Profile: FC<{ data: IProfileObject }> = ({ data }) => {
 								errors.phone?.message ||
 								(error.includes('Номер телефону') ? error : '')
 							}
+							prefix='+38'
 							disabled={isLoading}
 						/>
 						<Field
@@ -223,7 +215,7 @@ const Profile: FC<{ data: IProfileObject }> = ({ data }) => {
 								pattern: {
 									value: /^[А-ЩЬЮЯҐЄІЇ][а-щьюяґєії']*$/,
 									message:
-										'Прізвище повинно починатися з великої літери, містити лише українські літери та бути без пробілів'
+										'Прізвище повинно починатися з великої літери, містити лише українські символи та бути без пробілів'
 								},
 								minLength: {
 									value: 3,
@@ -248,7 +240,7 @@ const Profile: FC<{ data: IProfileObject }> = ({ data }) => {
 								pattern: {
 									value: /^[А-ЩЬЮЯҐЄІЇ][а-щьюяґєії']*$/,
 									message:
-										"Ім'я повинно починатися з великої літери, містити лише українські літери та бути без пробілів"
+										"Ім'я повинно починатися з великої літери, містити лише українські символи та бути без пробілів"
 								},
 								minLength: {
 									value: 2,

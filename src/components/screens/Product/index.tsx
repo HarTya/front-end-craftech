@@ -61,7 +61,7 @@ const Product: FC<{ data: IProductObjectFullset }> = ({ data }) => {
 						</div>
 						<ScrollLink
 							to='reviews'
-							offset={-VARS.headerHeight}
+							offset={-VARS.headerHeight - 62}
 							spy={true}
 							smooth={true}
 							duration={750}
@@ -114,7 +114,7 @@ const Product: FC<{ data: IProductObjectFullset }> = ({ data }) => {
 							</div>
 							<div>
 								<Text size='body-medium' color='accent'>
-									Самовивіз з відділень поштових операторів
+									Самовивіз з відділень "Нової пошти"
 								</Text>
 								<div></div>
 								<Text size='body-medium' color='accent-dark'>
