@@ -9,6 +9,7 @@ import Select from '@/ui/Select'
 import Text from '@/ui/Text'
 import ProductItem from '@/ui/catalog/ProductItem'
 import Sidebar from '@/ui/catalog/Sidebar'
+import CopyIcon from '@/ui/icons/Copy/CopyIcon'
 
 import { COLORS, VARS } from '@/config/variables.config'
 
@@ -46,20 +47,33 @@ const CatalogPagination: FC<ICatalogPagination> = ({ title, data }) => {
 		threshold: 0
 	})
 
+	const [isSidebarOpen, setIsSidebarOpen] = useState(false)
+
 	return (
 		<>
 			<div className={styles.title}>
 				<Text topline>{title}</Text>
-				<Select
-					options={['Висока ціна', 'Низька ціна', 'Найновіші', 'Найдавніші']}
-					sortType={sortType}
-					setSortType={setSortType}
-					className={styles.select}
-				/>
+				<div>
+					<div
+						onClick={() => setIsSidebarOpen(!isSidebarOpen)}
+						className={styles.button}
+					>
+						<CopyIcon />
+						<Text size='body-medium' color='accent-dark'>
+							Категорії
+						</Text>
+					</div>
+					<Select
+						options={['Найновіші', 'Низька ціна', 'Висока ціна', 'Найдавніші']}
+						sortType={sortType}
+						setSortType={setSortType}
+						className={styles.select}
+					/>
+				</div>
 			</div>
 			<section className={styles.section}>
 				<div className={styles.observe} ref={ref} />
-				<Sidebar pin={inView} />
+				<Sidebar isSidebarOpen={isSidebarOpen} pin={inView} />
 				<div
 					className={clsx(styles.content, {
 						[styles.content_pin]: inView

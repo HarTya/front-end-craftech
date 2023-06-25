@@ -6,23 +6,7 @@ const ArrowIconDownLarge: FC<{
 	color?: 'accent' | 'accent-dark'
 	error?: boolean
 }> = ({ color = 'accent', error = false }) => {
-	return color === 'accent' ? (
-		<svg
-			width='21'
-			height='13'
-			viewBox='0 0 21 13'
-			fill='none'
-			xmlns='http://www.w3.org/2000/svg'
-		>
-			<path
-				d='M1.75 2.125L10.5 10.875L19.25 2.125'
-				stroke={error ? COLORS.error : COLORS.accent}
-				strokeWidth='3'
-				strokeLinecap='round'
-				strokeLinejoin='round'
-			/>
-		</svg>
-	) : (
+	return (
 		<svg
 			xmlns='http://www.w3.org/2000/svg'
 			width='24'
@@ -32,7 +16,13 @@ const ArrowIconDownLarge: FC<{
 		>
 			<path
 				d='M2 2L12 10L22 2'
-				stroke={error ? COLORS.error : COLORS.accentDark}
+				stroke={
+					error
+						? COLORS.error
+						: color === 'accent'
+						? COLORS.accent
+						: COLORS.accentDark
+				}
 				strokeWidth='3'
 				strokeLinecap='round'
 				strokeLinejoin='round'

@@ -4,6 +4,8 @@ import { FC, PropsWithChildren, useEffect, useState } from 'react'
 import Text from '@/ui/Text'
 import CrossIcon from '@/ui/icons/Cross/CrossIcon'
 
+import { useOutside } from '@/hooks/useOutside'
+
 import styles from './Modal.module.scss'
 import { IModal } from './modal.interface'
 
@@ -15,6 +17,8 @@ const Modal: FC<PropsWithChildren<IModal>> = ({
 	className,
 	children
 }) => {
+	const { isOpen, setIsOpen: setIsOpenOutside, ref } = useOutside(true)
+
 	const [isReadyToClose, setIsReadyToClose] = useState(false)
 	const [close, setClose] = useState(false)
 
@@ -32,9 +36,16 @@ const Modal: FC<PropsWithChildren<IModal>> = ({
 		if (isReadyToClose) {
 			setClose(true)
 
-			setTimeout(() => setIsOpen(false), 400)
+			setTimeout(() => {
+				setIsOpen(false)
+				setIsOpenOutside(false)
+			}, 400)
 		}
 	}
+
+	useEffect(() => {
+		if (!isOpen) closeModal()
+	}, [isOpen])
 
 	useEffect(() => {
 		if (isForeignClose && setIsForeignClose) {
@@ -46,15 +57,17 @@ const Modal: FC<PropsWithChildren<IModal>> = ({
 
 	return (
 		<section
-			className={clsx(styles.section, {
-				[styles.section_disappearance]: close
-			})}
+			ref={ref}
+			className={clsx(
+				styles.section,
+				{
+					[styles.section_disappearance]: close
+				},
+				className
+			)}
 			onClick={() => closeModal()}
 		>
-			<div
-				className={clsx(styles.main, className)}
-				onClick={event => event.stopPropagation()}
-			>
+			<div className={styles.main} onClick={event => event.stopPropagation()}>
 				<div className={styles.top}>
 					<Text className={styles.title} topline nowrap>
 						{title}

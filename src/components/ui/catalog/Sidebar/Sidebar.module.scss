@@ -93,3 +93,13 @@
 	padding: 22px 0 22px 58px;
 	border-top: $border_width-thin solid $color-accent;
 }
+
+@media screen and (max-width: 796px) {
+	.aside {
+		display: none;
+
+		&_open {
+			display: block;
+		}
+	}
+}

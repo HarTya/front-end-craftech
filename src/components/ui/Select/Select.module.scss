@@ -4,6 +4,9 @@
 	from {
 		opacity: 0;
 	}
+	to {
+		opacity: 1;
+	}
 }
 
 .main {
@@ -16,8 +19,6 @@
 	box-shadow: 0 0 0 $border_width-medium inset $color-accent;
 	border-radius: $border_radius-small;
 	transition: box-shadow 0.2s ease-in-out, border-radius 0.2s ease-in-out;
-	opacity: 1;
-	animation: AppearanceAnimation 0.4s ease-in-out;
 }
 
 .error {
@@ -80,8 +81,6 @@
 
 .options {
 	display: none;
-	max-height: 250px;
-	overflow-y: auto;
 	position: absolute;
 	top: 100%;
 	left: 0;
@@ -89,8 +88,26 @@
 	z-index: 2;
 	border-radius: 0 0 $border_radius-small $border_radius-small;
 
-	&::-webkit-scrollbar {
-		display: none;
+	&_scroll {
+		right: -$border_width-medium;
+		border-radius: 0 0 0 $border_radius-small;
+		overflow-y: auto;
+
+		&::-webkit-scrollbar {
+			width: $border_width-medium;
+		}
+
+		&::-webkit-scrollbar-track {
+			background: transparent;
+		}
+
+		&::-webkit-scrollbar-thumb {
+			background: $color-accent-dark;
+		}
+
+		> div:last-child {
+			border-radius: 0 0 0 $border_radius-small !important;
+		}
 	}
 
 	&_empty {
@@ -102,6 +119,7 @@
 	}
 
 	> div {
+		min-height: 45px;
 		background-color: white;
 		transition: background-color 0.2s ease-in-out;
 		padding: 10px 15px;

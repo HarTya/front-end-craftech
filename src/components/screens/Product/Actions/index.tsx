@@ -38,6 +38,7 @@ const Actions: FC<{ product: IProductObject }> = ({ product }) => {
 				prefix='Розмір:'
 				activeOption={currentProduct?.size}
 				options={sizes}
+				optionLimit={5}
 				setSelectedOptionForeign={setSelectedSize}
 				error={cartError}
 				setError={setCartError}

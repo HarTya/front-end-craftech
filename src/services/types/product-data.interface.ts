@@ -1,7 +1,7 @@
 export enum EnumProductsSort {
-	HIGH_PRICE = 'high-price',
-	LOW_PRICE = 'low-price',
 	NEWEST = 'newest',
+	LOW_PRICE = 'low-price',
+	HIGH_PRICE = 'high-price',
 	OLDEST = 'oldest'
 }
 

@@ -151,6 +151,12 @@
 	}
 }
 
+@media screen and (max-width: 991px) {
+	.modal {
+		top: 0;
+	}
+}
+
 @media screen and (max-height: 824px),
 	screen and (max-width: 1024px) and (max-height: 947px) {
 	.main {

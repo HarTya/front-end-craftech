@@ -22,6 +22,10 @@
 	align-items: center;
 }
 
+.menu {
+	display: none;
+}
+
 .nav {
 	width: 285px;
 	height: 100%;
@@ -37,6 +41,14 @@
 		justify-content: center;
 		align-items: center;
 
+		> div:last-child {
+			display: none;
+		}
+
+		&:first-child {
+			display: none;
+		}
+
 		&:not(:last-child) {
 			margin-right: 30px;
 		}
@@ -51,5 +63,80 @@
 	.nav {
 		width: auto;
 		margin-left: 30px;
+	}
+}
+
+@media screen and (max-width: 991px) {
+	.menu {
+		cursor: pointer;
+		display: block;
+		user-select: none;
+		height: 100%;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+	}
+
+	.nav {
+		opacity: 0;
+		pointer-events: none;
+		position: fixed;
+		top: $header-height;
+		left: 0;
+		right: 0;
+		bottom: 0;
+		height: auto;
+		padding: 30px;
+		background: white;
+		margin-left: 0;
+		justify-content: flex-start;
+		flex-direction: column;
+		transition: opacity 0.2s ease-in-out;
+
+		&_item {
+			width: 100%;
+			max-width: 320px;
+			height: 130px;
+			justify-content: flex-start;
+			margin-right: 0 !important;
+
+			> div:last-child {
+				display: inherit;
+				margin-left: 15px;
+			}
+
+			&:first-child {
+				cursor: default;
+				display: inherit;
+
+				> section {
+					display: inherit;
+					width: 100%;
+					border: $border_width-medium solid $color-accent;
+
+					> div {
+						> svg {
+							> path {
+								stroke: currentColor;
+							}
+						}
+					}
+
+					> input {
+						color: black;
+						padding: 0;
+
+						&::placeholder {
+							color: black;
+						}
+					}
+				}
+			}
+		}
+
+		&_open {
+			opacity: 1;
+			pointer-events: all;
+		}
 	}
 }

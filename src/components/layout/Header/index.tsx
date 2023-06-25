@@ -1,8 +1,11 @@
+import clsx from 'clsx'
 import Image from 'next/legacy/image'
 import Link from 'next/link'
-import { FC } from 'react'
+import { FC, useState } from 'react'
 
+import Text from '@/ui/Text'
 import FavoriteIcon from '@/ui/icons/Favorite/FavoriteIcon'
+import MenuIcon from '@/ui/icons/Menu/MenuIcon'
 import UserIcon from '@/ui/icons/User/UserIcon'
 
 import { PAGES } from '@/config/pages.config'
@@ -17,6 +20,8 @@ import User from './User'
 const Header: FC = () => {
 	const { user } = useAuth()
 
+	const [isMenuOpen, setIsMenuOpen] = useState(false)
+
 	return (
 		<header className={styles.main}>
 			<Link href={PAGES.home} className={styles.logo}>
@@ -30,9 +35,22 @@ const Header: FC = () => {
 				/>
 			</Link>
 			<Search />
-			<nav className={styles.nav}>
+			<div onClick={() => setIsMenuOpen(!isMenuOpen)} className={styles.menu}>
+				<MenuIcon />
+			</div>
+			<nav
+				className={clsx(styles.nav, {
+					[styles.nav_open]: isMenuOpen
+				})}
+			>
+				<div className={styles.nav_item}>
+					<Search />
+				</div>
 				<Link href={PAGES.favorites} className={styles.nav_item}>
 					<FavoriteIcon />
+					<Text size='body-medium' weight='semibold'>
+						Улюблене
+					</Text>
 				</Link>
 				<Cart className={styles.nav_item} />
 				<Link
@@ -40,6 +58,9 @@ const Header: FC = () => {
 					className={styles.nav_item}
 				>
 					{user ? <User /> : <UserIcon />}
+					<Text size='body-medium' weight='semibold'>
+						Профіль
+					</Text>
 				</Link>
 			</nav>
 		</header>

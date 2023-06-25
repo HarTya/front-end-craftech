@@ -16,15 +16,17 @@ import Categories from './Categories'
 import styles from './Sidebar.module.scss'
 import Subcategories from './Subcategories'
 
-const Sidebar: FC<{ pin: boolean; subcategories?: ISubcategoryObject[] }> = ({
-	pin,
-	subcategories
-}) => {
+const Sidebar: FC<{
+	isSidebarOpen: boolean
+	pin: boolean
+	subcategories?: ISubcategoryObject[]
+}> = ({ isSidebarOpen, pin, subcategories }) => {
 	const { asPath } = useRouter()
 
 	return (
 		<aside
 			className={clsx(styles.aside, {
+				[styles.aside_open]: isSidebarOpen,
 				[styles.aside_pin]: pin
 			})}
 		>

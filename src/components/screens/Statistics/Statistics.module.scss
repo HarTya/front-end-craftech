@@ -2,7 +2,7 @@
 
 @keyframes AppearanceAnimation {
 	from {
-		transform: translateX(-40vw);
+		transform: translateX(-100%);
 		opacity: 0;
 	}
 	to {
@@ -22,10 +22,9 @@
 
 .title {
 	display: flex;
-	justify-content: center;
+	justify-content: flex-start;
 	align-items: center;
 	padding: 69px 60px 61px 60px;
-	animation: AppearanceAnimation 1s ease-in-out;
 
 	> div:last-child {
 		max-width: calc(100% - 75px);
@@ -61,7 +60,7 @@
 	width: 100%;
 	max-width: 383px;
 	border-top: $border_width-thin solid $color-accent;
-	animation: AppearanceAnimation 0.8s ease-in-out;
+	animation: AppearanceAnimation 1s ease-in-out;
 }
 
 .value {

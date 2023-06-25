@@ -19,6 +19,7 @@ import { COLORS } from '@/config/variables.config'
 import { useActions } from '@/hooks/useActions'
 import { useCart } from '@/hooks/useCart'
 import { useOrders } from '@/hooks/useOrders'
+import { useOutside } from '@/hooks/useOutside'
 import { useProfile } from '@/hooks/useProfile'
 
 import { EnumOrderPickupType } from '@/types/order.interface'
@@ -38,8 +39,9 @@ import {
 const Cart: FC<{ className: string }> = ({ className }) => {
 	const { push } = useRouter()
 
+	const { isOpen, setIsOpen, ref } = useOutside(false)
+
 	const [isModalOpen, setIsModalOpen] = useState(false)
-	const [isCloseModal, setIsCloseModal] = useState(false)
 
 	const { items, total } = useCart()
 
@@ -48,6 +50,11 @@ const Cart: FC<{ className: string }> = ({ className }) => {
 	const { discount } = useOrders()
 
 	const [isPlaceOrder, setIsPlaceOrder] = useState(false)
+
+	useEffect(() => {
+		if (!isOpen) setIsPlaceOrder(false)
+	}, [isOpen])
+
 	const [isReadyToSubmit, setIsReadyToSubmit] = useState(false)
 
 	useEffect(() => {
@@ -146,42 +153,39 @@ const Cart: FC<{ className: string }> = ({ className }) => {
 
 	return (
 		<>
-			<div
-				className={className}
-				onClick={() => {
-					setIsModalOpen(true)
-					setIsCloseModal(isModalOpen ? true : false)
-				}}
-			>
+			<div className={className} onClick={() => setIsModalOpen(true)}>
 				{!!items.length && <Text size='body-small'>{items.length}</Text>}
 				<CartIcon />
+				<Text size='body-medium' weight='semibold'>
+					Ваш кошик
+				</Text>
 			</div>
 			{isModalOpen ? (
 				<Modal
 					setIsOpen={setIsModalOpen}
-					isForeignClose={isCloseModal}
-					setIsForeignClose={setIsCloseModal}
 					title={isPlaceOrder ? 'Оформлення замовлення' : 'Ваш кошик'}
+					className={styles.modal}
 				>
 					{items.length ? (
 						<>
 							<div className={styles.main}>
-								<div
-									onClick={() => setIsPlaceOrder(false)}
-									className={styles.main_top}
-								>
+								<div className={styles.main_top}>
 									{items.map(item => (
 										<CartItem key={item.id} item={item} />
 									))}
 								</div>
 								<div
+									ref={ref}
 									className={clsx(styles.main_bottom, {
 										[styles.main_bottom_open]: isPlaceOrder
 									})}
 								>
 									{isPlaceOrder ? (
 										<span
-											onClick={() => setIsPlaceOrder(false)}
+											onClick={() => {
+												setIsPlaceOrder(false)
+												setIsOpen(false)
+											}}
 											className={styles.main_bottom_close}
 										>
 											<ArrowIconDownLarge color='accent-dark' />
@@ -277,9 +281,10 @@ const Cart: FC<{ className: string }> = ({ className }) => {
 													<Select
 														placeholder='Оберіть тип отримання замовлення'
 														options={[
-															'Самовивіз з магазину м. Запоріжжя',
-															'Самовивіз з відділень "Нової пошти"'
+															'Самовивіз з магазину\nм. Запоріжжя\n\nЦіна: Безкоштовно\n\nЧас отримання замовлення:\n12:00 - 18:30',
+															'Самовивіз з відділень\n"Нової пошти"\n\nЦіна: 70 - 200 грн\n\nЧас відправки замовлення:\n10:00 - 17:00'
 														]}
+														disableOptionNowrap
 														pickupType={pickupType}
 														setPickupType={setPickupType}
 														disabled={isLoading}
@@ -302,6 +307,7 @@ const Cart: FC<{ className: string }> = ({ className }) => {
 																	'Субота',
 																	'Неділя'
 																]}
+																optionLimit={3}
 																setSelectedOptionForeign={setSelectedDay}
 																error={isDaySelectError}
 																setError={setIsDaySelectError}
@@ -330,6 +336,7 @@ const Cart: FC<{ className: string }> = ({ className }) => {
 																	'18:00',
 																	'18:30'
 																]}
+																optionLimit={3}
 																setSelectedOptionForeign={setSelectedTime}
 																error={isTimeSelectError}
 																setError={setIsTimeSelectError}
@@ -343,7 +350,8 @@ const Cart: FC<{ className: string }> = ({ className }) => {
 															{...formRegister('city', {
 																required: 'Назву міста не вказано',
 																pattern: {
-																	value: /^[А-ЩЬЮЯҐЄІЇ][а-щьюяґєії' ]*$/,
+																	value:
+																		/^[А-ЩЬЮЯҐЄІЇ][а-щьюяґєії' А-ЩЬЮЯҐЄІЇ]*$/,
 																	message:
 																		'Назва міста повинна починатися з великої літери та містити лише українські символи'
 																},
@@ -405,7 +413,10 @@ const Cart: FC<{ className: string }> = ({ className }) => {
 											<Text color='accent'>{formatToCurrency(total)}</Text>
 										</div>
 										<Button
-											onClick={() => setIsPlaceOrder(true)}
+											onClick={() => {
+												setIsPlaceOrder(true)
+												setIsOpen(true)
+											}}
 											type={isReadyToSubmit ? 'submit' : 'button'}
 											form='place-order'
 											size='medium'

@@ -102,8 +102,8 @@ const Product: FC<{ data: IProductObjectFullset }> = ({ data }) => {
 							</div>
 							<Actions product={data} />
 						</div>
-						<div>
-							<div>
+						{/* <div> */}
+						{/* <div>
 								<Text size='body-medium' color='accent'>
 									Самовивіз з магазину м. Запоріжжя
 								</Text>
@@ -129,8 +129,8 @@ const Product: FC<{ data: IProductObjectFullset }> = ({ data }) => {
 								<Text size='body-medium' color='accent-dark'>
 									до 17:00
 								</Text>
-							</div>
-						</div>
+							</div>*/}
+						{/* </div> */}
 						<Characteristics data={data.characteristics} />
 					</div>
 				</div>

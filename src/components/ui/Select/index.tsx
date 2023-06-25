@@ -4,6 +4,8 @@ import { FC, useEffect, useState } from 'react'
 import Text from '@/ui/Text'
 import ArrowIconDownLarge from '@/ui/icons/Arrow/ArrowIconDownLarge'
 
+import { useOutside } from '@/hooks/useOutside'
+
 import { EnumOrderPickupType } from '@/types/order.interface'
 
 import styles from './Select.module.scss'
@@ -16,6 +18,8 @@ const Select: FC<ISelect> = ({
 	activeOption,
 	emptyMessage,
 	options,
+	optionLimit = 0,
+	disableOptionNowrap = false,
 	setSelectedOptionForeign,
 	error = false,
 	setError,
@@ -26,7 +30,13 @@ const Select: FC<ISelect> = ({
 	disabled = false,
 	className
 }) => {
+	const { isOpen, setIsOpen, ref } = useOutside(false)
+
 	const [isActive, setIsActive] = useState(false)
+
+	useEffect(() => {
+		if (!isOpen) setIsActive(false)
+	}, [isOpen])
 
 	const [selectedOption, setSelectedOption] = useState(
 		placeholder ? '' : options[0]
@@ -42,13 +52,13 @@ const Select: FC<ISelect> = ({
 
 	useEffect(() => {
 		switch (sortType) {
-			case EnumProductsSort.HIGH_PRICE:
+			case EnumProductsSort.NEWEST:
 				setSelectedOption(options[0])
 				break
 			case EnumProductsSort.LOW_PRICE:
 				setSelectedOption(options[1])
 				break
-			case EnumProductsSort.NEWEST:
+			case EnumProductsSort.HIGH_PRICE:
 				setSelectedOption(options[2])
 				break
 			case EnumProductsSort.OLDEST:
@@ -70,9 +80,11 @@ const Select: FC<ISelect> = ({
 
 	return (
 		<div
+			ref={ref}
 			onClick={() => {
 				if (setError) setError(false)
 				setIsActive(!isActive)
+				setIsOpen(!isOpen)
 			}}
 			className={clsx(
 				styles.main,
@@ -109,7 +121,19 @@ const Select: FC<ISelect> = ({
 					</Text>
 				</div>
 			) : (
-				<div className={styles.options}>
+				<div
+					className={clsx(styles.options, {
+						[styles.options_scroll]: !!optionLimit
+					})}
+					id='options'
+				>
+					{!!optionLimit && (
+						<style jsx global>{`
+							#options {
+								max-height: ${optionLimit * 45}px;
+							}
+						`}</style>
+					)}
 					{sortType && setSortType
 						? (
 								Object.keys(EnumProductsSort) as Array<
@@ -122,12 +146,18 @@ const Select: FC<ISelect> = ({
 											key={EnumProductsSort[key]}
 											onClick={() => setSortType(EnumProductsSort[key])}
 										>
-											<Text size='body' color='accent-dark' nowrap>
-												{EnumProductsSort[key] === EnumProductsSort.HIGH_PRICE
+											<Text
+												size='body'
+												color='accent-dark'
+												nowrap={!disableOptionNowrap}
+												prewrap={disableOptionNowrap}
+											>
+												{EnumProductsSort[key] === EnumProductsSort.NEWEST
 													? options[0]
 													: EnumProductsSort[key] === EnumProductsSort.LOW_PRICE
 													? options[1]
-													: EnumProductsSort[key] === EnumProductsSort.NEWEST
+													: EnumProductsSort[key] ===
+													  EnumProductsSort.HIGH_PRICE
 													? options[2]
 													: EnumProductsSort[key] === EnumProductsSort.OLDEST
 													? options[3]
@@ -148,7 +178,12 @@ const Select: FC<ISelect> = ({
 											key={EnumOrderPickupType[key]}
 											onClick={() => setPickupType(EnumOrderPickupType[key])}
 										>
-											<Text size='body' color='accent-dark' nowrap>
+											<Text
+												size='body'
+												color='accent-dark'
+												nowrap={!disableOptionNowrap}
+												prewrap={disableOptionNowrap}
+											>
 												{EnumOrderPickupType[key] === EnumOrderPickupType.STORE
 													? options[0]
 													: EnumOrderPickupType[key] ===
@@ -163,7 +198,12 @@ const Select: FC<ISelect> = ({
 								(name, index) =>
 									name !== selectedOption && (
 										<div key={index} onClick={() => setSelectedOption(name)}>
-											<Text size='body' color='accent-dark' nowrap>
+											<Text
+												size='body'
+												color='accent-dark'
+												nowrap={!disableOptionNowrap}
+												prewrap={disableOptionNowrap}
+											>
 												{name}
 											</Text>
 										</div>

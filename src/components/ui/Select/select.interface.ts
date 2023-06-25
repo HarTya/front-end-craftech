@@ -10,6 +10,8 @@ export interface ISelect {
 	activeOption?: string
 	emptyMessage?: string
 	options: string[]
+	optionLimit?: number
+	disableOptionNowrap?: boolean
 	setSelectedOptionForeign?: Dispatch<SetStateAction<string>>
 	error?: boolean
 	setError?: Dispatch<SetStateAction<boolean>>
