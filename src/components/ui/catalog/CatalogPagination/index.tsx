@@ -3,6 +3,7 @@ import clsx from 'clsx'
 import { FC, useEffect, useState } from 'react'
 import { useInView } from 'react-intersection-observer'
 import { TailSpin } from 'react-loader-spinner'
+import { scroller } from 'react-scroll'
 
 import Button from '@/ui/Button'
 import Select from '@/ui/Select'
@@ -13,6 +14,8 @@ import CopyIcon from '@/ui/icons/Copy/CopyIcon'
 
 import { COLORS, VARS } from '@/config/variables.config'
 
+import { useViewportWidth } from '@/hooks/useViewportWidth'
+
 import { ICatalogPagination } from '@/types/product.interface'
 
 import styles from './CatalogPagination.module.scss'
@@ -20,6 +23,8 @@ import { ProductService } from '@/services/product.service'
 import { EnumProductsSort } from '@/services/types/product-data.interface'
 
 const CatalogPagination: FC<ICatalogPagination> = ({ title, data }) => {
+	const { viewportWidth } = useViewportWidth()
+
 	const [page, setPage] = useState(1)
 
 	const [sortType, setSortType] = useState<EnumProductsSort>(
@@ -51,7 +56,7 @@ const CatalogPagination: FC<ICatalogPagination> = ({ title, data }) => {
 
 	useEffect(() => {
 		if (!inView) setIsSidebarOpen(false)
-	}, [])
+	}, [inView])
 
 	return (
 		<>
@@ -59,7 +64,14 @@ const CatalogPagination: FC<ICatalogPagination> = ({ title, data }) => {
 				<Text topline>{title}</Text>
 				<div>
 					<div
-						onClick={() => setIsSidebarOpen(inView && !isSidebarOpen)}
+						onClick={() => {
+							scroller.scrollTo('shop-content', {
+								duration: 500,
+								smooth: 'easeInOutQuart',
+								offset: -VARS.headerHeight + 1
+							})
+							setIsSidebarOpen(true)
+						}}
 						className={styles.open}
 					>
 						<CopyIcon />
@@ -77,8 +89,9 @@ const CatalogPagination: FC<ICatalogPagination> = ({ title, data }) => {
 			</div>
 			<section className={styles.section}>
 				<div className={styles.observe} ref={ref} />
-				<Sidebar pin={inView || isSidebarOpen} />
+				<Sidebar pin={viewportWidth < 796 ? isSidebarOpen && inView : inView} />
 				<div
+					id='shop-content'
 					className={clsx(styles.content, {
 						[styles.content_pin]: inView
 					})}

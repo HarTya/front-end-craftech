@@ -19,10 +19,6 @@ a {
 body {
 	overflow-x: hidden;
 
-	&.no-scroll {
-		overflow-y: hidden;
-	}
-
 	&::-webkit-scrollbar {
 		display: none;
 	}

@@ -29,68 +29,82 @@ const Header: FC = () => {
 	const { toggleMenu, closeMenu } = useActions()
 
 	useEffect(() => {
-		if (isMenuOpen) document.body.classList.add('no-scroll')
-		else document.body.classList.remove('no-scroll')
-	}, [isMenuOpen])
-
-	useEffect(() => {
 		closeMenu()
 	}, [asPath])
 
 	return (
-		<header className={styles.main}>
-			<Link
-				href={PAGES.home}
-				className={clsx(styles.logo, {
-					[styles.disabled]: asPath === PAGES.home
-				})}
-			>
-				<Image
-					src='/images/logo-rectangle.png'
-					alt='CRAFTECH'
-					layout='fill'
-					objectFit='cover'
-					quality={100}
-					priority
-				/>
-			</Link>
-			<div onClick={() => toggleMenu()} className={styles.menu}>
-				<MenuIcon />
-			</div>
-			<nav
-				className={clsx(styles.nav, {
-					[styles.nav_open]: isMenuOpen
-				})}
-			>
-				<div className={styles.nav_item}>
-					<Search />
+		<>
+			{isMenuOpen && (
+				<style jsx global>{`
+					body {
+						overflow-y: hidden;
+					}
+				`}</style>
+			)}
+			<header className={styles.main}>
+				<Link
+					href={PAGES.home}
+					className={clsx(styles.logo, {
+						[styles.disabled]: asPath === PAGES.home
+					})}
+				>
+					<Image
+						src='/images/logo-rectangle.png'
+						alt='CRAFTECH'
+						layout='fill'
+						objectFit='cover'
+						quality={100}
+						priority
+					/>
+				</Link>
+				<div onClick={() => toggleMenu()} className={styles.menu}>
+					<MenuIcon />
 				</div>
-				<Link
-					href={PAGES.favorites}
-					className={clsx(styles.nav_item, {
-						[styles.nav_item_disabled]: asPath === PAGES.favorites
+				<nav
+					className={clsx(styles.nav, {
+						[styles.nav_open]: isMenuOpen
 					})}
 				>
-					<FavoriteIcon />
-					<Text size='body-medium' color='accent-dark' weight='semibold' nowrap>
-						Улюблене
-					</Text>
-				</Link>
-				<Cart className={styles.nav_item} />
-				<Link
-					href={user ? PAGES.profile : PAGES.auth}
-					className={clsx(styles.nav_item, {
-						[styles.nav_item_disabled]:
-							asPath === PAGES.profile || asPath === PAGES.auth
-					})}
-				>
-					{user ? <User /> : <UserIcon />}
-					<Text size='body-medium' color='accent-dark' weight='semibold' nowrap>
-						Профіль
-					</Text>
-				</Link>
-			</nav>
-		</header>
+					<div className={styles.nav_item}>
+						<Search />
+					</div>
+					<Link
+						href={PAGES.favorites}
+						className={clsx(styles.nav_item, {
+							[styles.nav_item_disabled]: asPath === PAGES.favorites
+						})}
+					>
+						<FavoriteIcon />
+						<Text
+							size='body-medium'
+							color='accent-dark'
+							weight='semibold'
+							nowrap
+						>
+							Улюблене
+						</Text>
+					</Link>
+					<Cart className={styles.nav_item} />
+					<Link
+						href={user ? PAGES.profile : PAGES.auth}
+						className={clsx(styles.nav_item, {
+							[styles.nav_item_disabled]:
+								asPath === PAGES.profile || asPath === PAGES.auth
+						})}
+					>
+						{user ? <User /> : <UserIcon />}
+						<Text
+							size='body-medium'
+							color='accent-dark'
+							weight='semibold'
+							nowrap
+						>
+							Профіль
+						</Text>
+					</Link>
+				</nav>
+			</header>
+		</>
 	)
 }
 
