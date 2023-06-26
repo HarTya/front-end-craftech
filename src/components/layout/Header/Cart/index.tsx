@@ -156,7 +156,7 @@ const Cart: FC<{ className: string }> = ({ className }) => {
 			<div className={className} onClick={() => setIsModalOpen(true)}>
 				{!!items.length && <Text size='body-small'>{items.length}</Text>}
 				<CartIcon />
-				<Text size='body-medium' weight='semibold'>
+				<Text size='body-medium' color='accent-dark' weight='semibold' nowrap>
 					Ваш кошик
 				</Text>
 			</div>
@@ -164,7 +164,6 @@ const Cart: FC<{ className: string }> = ({ className }) => {
 				<Modal
 					setIsOpen={setIsModalOpen}
 					title={isPlaceOrder ? 'Оформлення замовлення' : 'Ваш кошик'}
-					className={styles.modal}
 				>
 					{items.length ? (
 						<>
@@ -281,8 +280,8 @@ const Cart: FC<{ className: string }> = ({ className }) => {
 													<Select
 														placeholder='Оберіть тип отримання замовлення'
 														options={[
-															'Самовивіз з магазину\nм. Запоріжжя\n\nЦіна: Безкоштовно\n\nЧас отримання замовлення:\n12:00 - 18:30',
-															'Самовивіз з відділень\n"Нової пошти"\n\nЦіна: 70 - 200 грн\n\nЧас відправки замовлення:\n10:00 - 17:00'
+															'Самовивіз з магазину\nм. Запоріжжя',
+															'Самовивіз з відділень\n"Нової пошти"'
 														]}
 														disableOptionNowrap
 														pickupType={pickupType}

@@ -11,6 +11,7 @@ import {
 } from 'redux-persist'
 
 import { cartSlice } from './cart/cart.slice'
+import { menuSlice } from './menu/menu.slice'
 import { createPersistStorage } from './persist-storage'
 import { userSlice } from './user/user.slice'
 
@@ -23,8 +24,9 @@ const persistConfig = {
 }
 
 const rootReducer = combineReducers({
-	cart: cartSlice.reducer,
+	menu: menuSlice.reducer,
 	// carousel: carouselSlice.reducer,
+	cart: cartSlice.reducer,
 	user: userSlice.reducer
 })
 

@@ -61,3 +61,9 @@
 	width: 100%;
 	margin-top: 19px;
 }
+
+@media screen and (max-width: 575px) {
+	.section {
+		min-height: calc(100vh - $header-height-mobile);
+	}
+}

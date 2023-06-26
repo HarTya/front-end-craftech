@@ -98,8 +98,18 @@
 	.aside {
 		display: none;
 
-		&_open {
+		&_pin {
 			display: block;
+		}
+	}
+}
+
+@media screen and (max-width: 575px) {
+	.aside {
+		height: calc(100vh - ($header-height-mobile + 20px));
+
+		&_pin {
+			top: $header-height-mobile;
 		}
 	}
 }

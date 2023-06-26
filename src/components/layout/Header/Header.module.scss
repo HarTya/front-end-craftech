@@ -8,7 +8,7 @@
 	width: 100%;
 	height: $header-height;
 	display: flex;
-	justify-content: space-between;
+	justify-content: center;
 	align-items: center;
 	padding: 0 7.292%;
 	background-color: $color-accent;
@@ -16,10 +16,16 @@
 
 .logo {
 	cursor: pointer;
-	height: 100%;
+	position: relative;
+	width: 285px;
+	height: 50px;
 	display: flex;
 	justify-content: center;
 	align-items: center;
+}
+
+.disabled {
+	pointer-events: none;
 }
 
 .menu {
@@ -27,16 +33,15 @@
 }
 
 .nav {
-	width: 285px;
+	width: calc(100% - 285px);
 	height: 100%;
 	display: flex;
-	justify-content: flex-end;
+	justify-content: flex-start;
 	align-items: center;
 
 	&_item {
 		cursor: pointer;
 		user-select: none;
-		height: 100%;
 		display: flex;
 		justify-content: center;
 		align-items: center;
@@ -46,32 +51,29 @@
 		}
 
 		&:first-child {
-			display: none;
+			cursor: default;
+			margin: 0 auto;
 		}
 
-		&:not(:last-child) {
+		&:not(:first-child, :last-child) {
 			margin-right: 30px;
+		}
+
+		&_disabled {
+			pointer-events: none;
 		}
 	}
 }
 
-@media screen and (max-width: 1440px) {
+@media screen and (max-width: 1111px) {
 	.logo {
 		margin-right: auto;
 	}
 
-	.nav {
-		width: auto;
-		margin-left: 30px;
-	}
-}
-
-@media screen and (max-width: 991px) {
 	.menu {
 		cursor: pointer;
 		display: block;
 		user-select: none;
-		height: 100%;
 		display: flex;
 		justify-content: center;
 		align-items: center;
@@ -85,51 +87,43 @@
 		left: 0;
 		right: 0;
 		bottom: 0;
-		height: auto;
+		width: 100%;
+		height: calc(100% - $header-height);
 		padding: 30px;
+		overflow-y: auto;
 		background: white;
-		margin-left: 0;
-		justify-content: flex-start;
 		flex-direction: column;
 		transition: opacity 0.2s ease-in-out;
+
+		&::-webkit-scrollbar {
+			display: none;
+		}
 
 		&_item {
 			width: 100%;
 			max-width: 320px;
-			height: 130px;
-			justify-content: flex-start;
-			margin-right: 0 !important;
 
 			> div:last-child {
-				display: inherit;
-				margin-left: 15px;
+				display: block;
+				max-width: calc(100% - 50px);
+				margin: 0 auto;
+				padding: 0 15px;
 			}
 
 			&:first-child {
-				cursor: default;
-				display: inherit;
+				margin: 40px 0;
+			}
 
-				> section {
-					display: inherit;
-					width: 100%;
-					border: $border_width-medium solid $color-accent;
+			&:not(:first-child) {
+				margin: 40px 0;
 
-					> div {
-						> svg {
-							> path {
-								stroke: currentColor;
-							}
-						}
-					}
+				padding: 4.5px 15px;
+				background-color: $color-accent;
+				border: $border_width-medium solid $color-accent;
+				border-radius: $border_radius-small;
 
-					> input {
-						color: black;
-						padding: 0;
-
-						&::placeholder {
-							color: black;
-						}
-					}
+				&.nav_item_disabled {
+					background-color: $color-accent-half-transparent;
 				}
 			}
 		}
@@ -138,5 +132,21 @@
 			opacity: 1;
 			pointer-events: all;
 		}
+	}
+}
+
+@media screen and (max-width: 575px) {
+	.main {
+		height: $header-height-mobile;
+	}
+
+	.logo {
+		width: 210px;
+		height: 38px;
+	}
+
+	.nav {
+		top: $header-height-mobile;
+		height: calc(100% - $header-height-mobile);
 	}
 }

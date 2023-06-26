@@ -1,7 +1,8 @@
 import clsx from 'clsx'
 import Image from 'next/legacy/image'
 import Link from 'next/link'
-import { FC, useState } from 'react'
+import { useRouter } from 'next/router'
+import { FC, useEffect } from 'react'
 
 import Text from '@/ui/Text'
 import FavoriteIcon from '@/ui/icons/Favorite/FavoriteIcon'
@@ -10,7 +11,9 @@ import UserIcon from '@/ui/icons/User/UserIcon'
 
 import { PAGES } from '@/config/pages.config'
 
+import { useActions } from '@/hooks/useActions'
 import { useAuth } from '@/hooks/useAuth'
+import { useMenu } from '@/hooks/useMenu'
 
 import Cart from './Cart'
 import styles from './Header.module.scss'
@@ -18,24 +21,40 @@ import Search from './Search'
 import User from './User'
 
 const Header: FC = () => {
+	const { asPath } = useRouter()
+
 	const { user } = useAuth()
 
-	const [isMenuOpen, setIsMenuOpen] = useState(false)
+	const { isMenuOpen } = useMenu()
+	const { toggleMenu, closeMenu } = useActions()
+
+	useEffect(() => {
+		if (isMenuOpen) document.body.classList.add('no-scroll')
+		else document.body.classList.remove('no-scroll')
+	}, [isMenuOpen])
+
+	useEffect(() => {
+		closeMenu()
+	}, [asPath])
 
 	return (
 		<header className={styles.main}>
-			<Link href={PAGES.home} className={styles.logo}>
+			<Link
+				href={PAGES.home}
+				className={clsx(styles.logo, {
+					[styles.disabled]: asPath === PAGES.home
+				})}
+			>
 				<Image
 					src='/images/logo-rectangle.png'
 					alt='CRAFTECH'
-					width={285}
-					height={50}
+					layout='fill'
+					objectFit='cover'
 					quality={100}
 					priority
 				/>
 			</Link>
-			<Search />
-			<div onClick={() => setIsMenuOpen(!isMenuOpen)} className={styles.menu}>
+			<div onClick={() => toggleMenu()} className={styles.menu}>
 				<MenuIcon />
 			</div>
 			<nav
@@ -46,19 +65,27 @@ const Header: FC = () => {
 				<div className={styles.nav_item}>
 					<Search />
 				</div>
-				<Link href={PAGES.favorites} className={styles.nav_item}>
+				<Link
+					href={PAGES.favorites}
+					className={clsx(styles.nav_item, {
+						[styles.nav_item_disabled]: asPath === PAGES.favorites
+					})}
+				>
 					<FavoriteIcon />
-					<Text size='body-medium' weight='semibold'>
+					<Text size='body-medium' color='accent-dark' weight='semibold' nowrap>
 						Улюблене
 					</Text>
 				</Link>
 				<Cart className={styles.nav_item} />
 				<Link
 					href={user ? PAGES.profile : PAGES.auth}
-					className={styles.nav_item}
+					className={clsx(styles.nav_item, {
+						[styles.nav_item_disabled]:
+							asPath === PAGES.profile || asPath === PAGES.auth
+					})}
 				>
 					{user ? <User /> : <UserIcon />}
-					<Text size='body-medium' weight='semibold'>
+					<Text size='body-medium' color='accent-dark' weight='semibold' nowrap>
 						Профіль
 					</Text>
 				</Link>

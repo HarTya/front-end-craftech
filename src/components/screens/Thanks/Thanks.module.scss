@@ -19,10 +19,15 @@
 }
 
 .text {
-	text-align: center;
 	margin: 20px 0 30px 0;
 }
 
 .button {
 	margin: 0 auto;
+}
+
+@media screen and (max-width: 575px) {
+	.section {
+		min-height: calc(100vh - $header-height-mobile);
+	}
 }

@@ -74,3 +74,9 @@
 		padding: 46px 26px 52px 26px;
 	}
 }
+
+@media screen and (max-width: 575px) {
+	.section {
+		top: $header-height-mobile;
+	}
+}

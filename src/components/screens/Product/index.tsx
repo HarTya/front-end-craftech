@@ -102,8 +102,8 @@ const Product: FC<{ data: IProductObjectFullset }> = ({ data }) => {
 							</div>
 							<Actions product={data} />
 						</div>
-						{/* <div> */}
-						{/* <div>
+						<div>
+							<div>
 								<Text size='body-medium' color='accent'>
 									Самовивіз з магазину м. Запоріжжя
 								</Text>
@@ -118,19 +118,19 @@ const Product: FC<{ data: IProductObjectFullset }> = ({ data }) => {
 								</Text>
 								<div></div>
 								<Text size='body-medium' color='accent-dark'>
-									70-200 грн
+									70 - 200 грн
 								</Text>
 							</div>
 							<div>
 								<Text size='body-medium' color='accent'>
-									Відправка товару поштою
+									Час відправки товару поштою
 								</Text>
 								<div></div>
 								<Text size='body-medium' color='accent-dark'>
-									до 17:00
+									10:00 - 17:00
 								</Text>
-							</div>*/}
-						{/* </div> */}
+							</div>
+						</div>
 						<Characteristics data={data.characteristics} />
 					</div>
 				</div>

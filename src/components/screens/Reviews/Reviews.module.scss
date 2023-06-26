@@ -29,3 +29,9 @@
 	flex-direction: column;
 	padding: 0 60px 61px 60px;
 }
+
+@media screen and (max-width: 575px) {
+	.main {
+		min-height: calc(100vh - ($header-height-mobile + 191px));
+	}
+}

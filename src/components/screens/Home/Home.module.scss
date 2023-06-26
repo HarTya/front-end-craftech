@@ -96,6 +96,13 @@
 	}
 }
 
+@media screen and (max-width: 575px) {
+	.content {
+		margin-top: 31px;
+		padding: 0 48px;
+	}
+}
+
 @media screen and (min-width: 2222px) {
 	.content {
 		width: calc(100% - 1111px);

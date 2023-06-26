@@ -81,3 +81,16 @@
 .message {
 	margin-bottom: 61px;
 }
+
+@media screen and (max-width: 575px) {
+	.observe {
+		top: calc(100vh - $header-height-mobile);
+		height: calc(100% - (100vh - $header-height-mobile));
+	}
+
+	.content {
+		&_sidebar {
+			min-height: calc(100vh - $header-height-mobile);
+		}
+	}
+}

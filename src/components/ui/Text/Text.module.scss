@@ -114,3 +114,25 @@
 .prewrap {
 	white-space: pre-wrap;
 }
+
+@media screen and (max-width: 575px) {
+	.heading {
+		font-size: $font_size-heading-mobile;
+	}
+
+	.subheading_medium {
+		font-size: $font_size-subheading-medium-mobile;
+	}
+
+	.subheading {
+		font-size: $font_size-subheading-mobile;
+	}
+
+	.body {
+		font-size: $font_size-body-mobile;
+	}
+
+	.caption {
+		font-size: $font_size-caption-mobile;
+	}
+}

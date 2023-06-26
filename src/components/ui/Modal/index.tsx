@@ -4,6 +4,7 @@ import { FC, PropsWithChildren, useEffect, useState } from 'react'
 import Text from '@/ui/Text'
 import CrossIcon from '@/ui/icons/Cross/CrossIcon'
 
+import { useMenu } from '@/hooks/useMenu'
 import { useOutside } from '@/hooks/useOutside'
 
 import styles from './Modal.module.scss'
@@ -17,7 +18,9 @@ const Modal: FC<PropsWithChildren<IModal>> = ({
 	className,
 	children
 }) => {
-	const { isOpen, setIsOpen: setIsOpenOutside, ref } = useOutside(true)
+	const { isOpen, ref } = useOutside(true, 400)
+
+	const { isMenuOpen } = useMenu()
 
 	const [isReadyToClose, setIsReadyToClose] = useState(false)
 	const [close, setClose] = useState(false)
@@ -28,7 +31,7 @@ const Modal: FC<PropsWithChildren<IModal>> = ({
 		setTimeout(() => setIsReadyToClose(true), 400)
 
 		return () => {
-			document.body.classList.remove('no-scroll')
+			if (!isMenuOpen) document.body.classList.remove('no-scroll')
 		}
 	}, [])
 
@@ -36,10 +39,7 @@ const Modal: FC<PropsWithChildren<IModal>> = ({
 		if (isReadyToClose) {
 			setClose(true)
 
-			setTimeout(() => {
-				setIsOpen(false)
-				setIsOpenOutside(false)
-			}, 400)
+			setTimeout(() => setIsOpen(false), 400)
 		}
 	}
 

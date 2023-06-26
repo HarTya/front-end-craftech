@@ -49,14 +49,18 @@ const CatalogPagination: FC<ICatalogPagination> = ({ title, data }) => {
 
 	const [isSidebarOpen, setIsSidebarOpen] = useState(false)
 
+	useEffect(() => {
+		if (!inView) setIsSidebarOpen(false)
+	}, [])
+
 	return (
 		<>
 			<div className={styles.title}>
 				<Text topline>{title}</Text>
 				<div>
 					<div
-						onClick={() => setIsSidebarOpen(!isSidebarOpen)}
-						className={styles.button}
+						onClick={() => setIsSidebarOpen(inView && !isSidebarOpen)}
+						className={styles.open}
 					>
 						<CopyIcon />
 						<Text size='body-medium' color='accent-dark'>
@@ -73,7 +77,7 @@ const CatalogPagination: FC<ICatalogPagination> = ({ title, data }) => {
 			</div>
 			<section className={styles.section}>
 				<div className={styles.observe} ref={ref} />
-				<Sidebar isSidebarOpen={isSidebarOpen} pin={inView} />
+				<Sidebar pin={inView || isSidebarOpen} />
 				<div
 					className={clsx(styles.content, {
 						[styles.content_pin]: inView

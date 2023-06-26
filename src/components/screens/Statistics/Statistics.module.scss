@@ -66,3 +66,9 @@
 .value {
 	margin-top: 10px;
 }
+
+@media screen and (max-width: 575px) {
+	.main {
+		min-height: calc(100vh - ($header-height-mobile + 191px));
+	}
+}
