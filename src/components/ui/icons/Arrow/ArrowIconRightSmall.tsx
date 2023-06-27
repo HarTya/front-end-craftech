@@ -2,11 +2,15 @@ import { FC } from 'react'
 
 import { COLORS } from '@/config/variables.config'
 
+import { useViewportWidth } from '@/hooks/useViewportWidth'
+
 const ArrowIconRightSmall: FC = () => {
+	const { viewportWidth } = useViewportWidth()
+
 	return (
 		<svg
-			width='16'
-			height='16'
+			width={viewportWidth <= 575 ? 12 : 16}
+			height={viewportWidth <= 575 ? 12 : 16}
 			fill='none'
 			stroke={COLORS.accent}
 			strokeLinecap='round'

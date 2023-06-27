@@ -15,6 +15,8 @@ import {
 	dynamicPageHref
 } from '@/config/pages.config'
 
+import { useViewportWidth } from '@/hooks/useViewportWidth'
+
 import { IProductObject } from '@/types/product.interface'
 
 import { formatToCurrency } from '@/utils/format-to-currency'
@@ -28,6 +30,8 @@ const DynamicFavoriteButton = dynamic(
 
 const ProductItem: FC<{ product: IProductObject }> = ({ product }) => {
 	const { asPath } = useRouter()
+
+	const { viewportWidth } = useViewportWidth()
 
 	const isAdminPage = asPath === PAGES.admin
 
@@ -98,7 +102,7 @@ const ProductItem: FC<{ product: IProductObject }> = ({ product }) => {
 				</Link>
 				<ProductRating
 					reviews={product.reviews}
-					starSize={13}
+					starSize={viewportWidth <= 575 ? 12 : 13}
 					textSize='caption'
 					className={styles.rating}
 				/>

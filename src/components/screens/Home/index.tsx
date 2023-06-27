@@ -47,7 +47,7 @@ const Home: FC<IProductsPagination> = ({ products, length }) => {
 						<ScrollLink
 							to='shop'
 							offset={
-								viewportWidth < 575
+								viewportWidth <= 575
 									? -VARS.headerHeightMobile
 									: -VARS.headerHeight
 							}

@@ -2,12 +2,16 @@ import { FC } from 'react'
 
 import { COLORS } from '@/config/variables.config'
 
+import { useViewportWidth } from '@/hooks/useViewportWidth'
+
 const CrossIcon: FC = () => {
+	const { viewportWidth } = useViewportWidth()
+
 	return (
 		<svg
 			xmlns='http://www.w3.org/2000/svg'
-			width='40'
-			height='40'
+			width={viewportWidth <= 575 ? 20 : 40}
+			height={viewportWidth <= 575 ? 20 : 40}
 			viewBox='0 0 40 40'
 			fill='none'
 		>

@@ -60,16 +60,18 @@ const CatalogPagination: FC<ICatalogPagination> = ({ title, data }) => {
 
 	return (
 		<>
-			<div className={styles.title}>
-				<Text topline>{title}</Text>
-				<div>
+			<div className={styles.top}>
+				<Text className={styles.title} topline>
+					{title}
+				</Text>
+				<div className={styles.actions}>
 					<div
 						onClick={() => {
 							scroller.scrollTo('shop-content', {
 								duration: 500,
 								smooth: 'easeInOutQuart',
 								offset:
-									viewportWidth < 575
+									viewportWidth <= 575
 										? -VARS.headerHeightMobile + 1
 										: -VARS.headerHeight + 1
 							})
@@ -78,7 +80,10 @@ const CatalogPagination: FC<ICatalogPagination> = ({ title, data }) => {
 						className={styles.open}
 					>
 						<CopyIcon />
-						<Text size='body-medium' color='accent-dark'>
+						<Text
+							size={viewportWidth <= 575 ? 'body' : 'body-medium'}
+							color='accent-dark'
+						>
 							Категорії
 						</Text>
 					</div>

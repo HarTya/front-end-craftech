@@ -9,33 +9,35 @@
 	}
 }
 
-.title {
+.top {
 	display: flex;
 	justify-content: flex-start;
 	align-items: center;
 	padding: 69px 58px 61px 58px;
 
 	&_back {
-		> div:nth-child(2) {
+		.title {
 			max-width: calc(100% - 75px);
+		}
+	}
+
+	&_additionalTitle {
+		.title {
+			display: flex;
+			justify-content: flex-start;
+			align-items: center;
+
+			&_arrow {
+				display: flex;
+				justify-content: center;
+				align-items: center;
+				padding: 0 10px;
+			}
 		}
 	}
 
 	&_sidebar {
 		padding: 69px 90px 61px 58px;
-	}
-
-	&_additionalTitle {
-		display: flex;
-		justify-content: flex-start;
-		align-items: center;
-
-		&_arrow {
-			display: flex;
-			justify-content: center;
-			align-items: center;
-			padding: 0 10px;
-		}
 	}
 }
 
@@ -88,27 +90,27 @@
 @media screen and (max-width: 796px) {
 	.back {
 		margin-right: 0;
-		margin-bottom: 25px;
+		margin-bottom: 50px;
 	}
 
-	.title {
+	.top {
 		align-items: flex-start;
 		flex-direction: column;
 		padding: 69px 58px 61px 58px;
 
 		&_back {
-			> div:nth-child(2) {
+			.title {
 				max-width: 100%;
 			}
 		}
+	}
 
-		> div:nth-child(3) {
-			width: 100%;
-			margin-top: 14px;
-			display: flex;
-			justify-content: space-between;
-			align-items: center;
-		}
+	.actions {
+		width: 100%;
+		margin-top: 14px;
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
 	}
 
 	.open {
@@ -122,17 +124,8 @@
 		width: 100%;
 		max-width: 370px;
 		height: 50px;
-		font-weight: 700;
-		color: $color-accent-dark;
 		background-color: $color-accent;
-		transition: background-color 0.2s ease-in-out, opacity 0.2s ease-in-out;
-		border: $border_width-medium solid $color-accent;
 		border-radius: $border_radius-small;
-
-		> svg {
-			width: 48px;
-			height: 36px;
-		}
 
 		> div:last-child {
 			display: flex;
@@ -158,19 +151,23 @@
 
 @media screen and (max-width: 575px) {
 	.back {
-		margin-bottom: 14px;
+		margin-bottom: 25px;
 
 		> button {
 			width: 40px;
 		}
 	}
 
-	.title {
-		padding: 43px 32px 21px 32px;
+	.top {
+		padding: 43px 32px;
+	}
 
-		> div:last-child {
-			margin-top: 7px;
-		}
+	.actions {
+		margin-top: 7px;
+	}
+
+	.open {
+		height: 27px;
 	}
 
 	.observe {

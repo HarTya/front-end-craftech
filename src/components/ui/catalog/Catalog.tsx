@@ -50,9 +50,10 @@ const Catalog: FC<ICatalog> = ({
 	return (
 		<>
 			<div
-				className={clsx(styles.title, {
-					[styles.title_back]: backUrl,
-					[styles.title_sidebar]: sidebar
+				className={clsx(styles.top, {
+					[styles.top_back]: backUrl,
+					[styles.top_additionalTitle]: additionalTitle,
+					[styles.top_sidebar]: sidebar
 				})}
 			>
 				{backUrl && (
@@ -63,27 +64,27 @@ const Catalog: FC<ICatalog> = ({
 					</div>
 				)}
 				{!additionalTitle ? (
-					<Text topline nowrap>
+					<Text className={styles.title} topline nowrap>
 						{title}
 					</Text>
 				) : (
-					<div className={styles.title_additionalTitle}>
+					<div className={styles.title}>
 						<Text topline>{title}</Text>
-						<div className={styles.title_additionalTitle_arrow}>
+						<div className={styles.title_arrow}>
 							<ArrowIconRightLarge />
 						</div>
 						<Text>{additionalTitle}</Text>
 					</div>
 				)}
 				{sidebar && (
-					<div>
+					<div className={styles.actions}>
 						<div
 							onClick={() => {
 								scroller.scrollTo('shop-content', {
 									duration: 500,
 									smooth: 'easeInOutQuart',
 									offset:
-										viewportWidth < 575
+										viewportWidth <= 575
 											? -VARS.headerHeightMobile + 1
 											: -VARS.headerHeight + 1
 								})
@@ -92,7 +93,10 @@ const Catalog: FC<ICatalog> = ({
 							className={styles.open}
 						>
 							<CopyIcon />
-							<Text size='body-medium' color='accent-dark'>
+							<Text
+								size={viewportWidth <= 575 ? 'body' : 'body-medium'}
+								color='accent-dark'
+							>
 								{subcategories ? 'Підкатегорії' : 'Категорії'}
 							</Text>
 						</div>

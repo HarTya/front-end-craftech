@@ -2,12 +2,16 @@ import { FC } from 'react'
 
 import { COLORS } from '@/config/variables.config'
 
+import { useViewportWidth } from '@/hooks/useViewportWidth'
+
 const CopyIcon: FC = () => {
+	const { viewportWidth } = useViewportWidth()
+
 	return (
 		<svg
 			xmlns='http://www.w3.org/2000/svg'
-			width='24'
-			height='18'
+			width={viewportWidth <= 575 ? 24 : 48}
+			height={viewportWidth <= 575 ? 18 : 36}
 			viewBox='0 0 24 18'
 			fill='none'
 		>

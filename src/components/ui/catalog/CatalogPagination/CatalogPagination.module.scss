@@ -1,6 +1,6 @@
 @import '@/assets/styles/_variables.scss';
 
-.title {
+.top {
 	display: flex;
 	justify-content: space-between;
 	align-items: center;
@@ -69,22 +69,18 @@
 }
 
 @media screen and (max-width: 796px) {
-	.title {
+	.top {
 		align-items: flex-start;
 		flex-direction: column;
 		padding: 69px 58px 61px 58px;
+	}
 
-		> div:last-child {
-			width: 100%;
-			margin-top: 14px;
-			display: flex;
-			justify-content: space-between;
-			align-items: center;
-
-			> div {
-				width: 49%;
-			}
-		}
+	.actions {
+		width: 100%;
+		margin-top: 14px;
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
 	}
 
 	.open {
@@ -93,26 +89,21 @@
 		display: flex;
 		justify-content: center;
 		align-items: center;
-		padding: 0 15px;
+		width: 49%;
 		height: 50px;
-		font-weight: 700;
-		color: $color-accent-dark;
 		background-color: $color-accent;
-		transition: background-color 0.2s ease-in-out, opacity 0.2s ease-in-out;
-		border: $border_width-medium solid $color-accent;
 		border-radius: $border_radius-small;
-
-		> svg {
-			width: 48px;
-			height: 36px;
-		}
 
 		> div:last-child {
 			display: flex;
 			justify-content: center;
 			align-items: center;
-			width: 80%;
+			width: calc(85% - 48px);
 		}
+	}
+
+	.select {
+		width: 49%;
 	}
 
 	.section {
@@ -130,12 +121,24 @@
 }
 
 @media screen and (max-width: 575px) {
-	.title {
-		padding: 43px 32px 21px 32px;
+	.top {
+		padding: 43px 32px;
+	}
+
+	.actions {
+		margin-top: 7px;
+	}
+
+	.open {
+		height: 27px;
 
 		> div:last-child {
-			margin-top: 7px;
+			width: calc(85% - 24px);
 		}
+	}
+
+	.select {
+		min-width: 100px;
 	}
 
 	.observe {
