@@ -7,5 +7,6 @@ export const COLORS = {
 
 export const VARS = {
 	headerHeight: 80,
+	headerHeightMobile: 70,
 	productsPerPage: 15
 }

@@ -1,19 +1,22 @@
 import clsx from 'clsx'
 import { useRouter } from 'next/router'
-import { FC } from 'react'
+import { FC, useEffect, useState } from 'react'
 import { useInView } from 'react-intersection-observer'
 import { TailSpin } from 'react-loader-spinner'
+import { scroller } from 'react-scroll'
 
 import Button from '@/ui/Button'
 import Text from '@/ui/Text'
 import ArrowIconLeft from '@/ui/icons/Arrow/ArrowIconLeft'
+import ArrowIconRightLarge from '@/ui/icons/Arrow/ArrowIconRightLarge'
+import CopyIcon from '@/ui/icons/Copy/CopyIcon'
 
 import { PAGES } from '@/config/pages.config'
-import { COLORS } from '@/config/variables.config'
+import { COLORS, VARS } from '@/config/variables.config'
+
+import { useViewportWidth } from '@/hooks/useViewportWidth'
 
 import { ICatalog } from '@/types/product.interface'
-
-import ArrowIconRightLarge from '../icons/Arrow/ArrowIconRightLarge'
 
 import styles from './Catalog.module.scss'
 import NewProduct from './NewProduct'
@@ -30,12 +33,19 @@ const Catalog: FC<ICatalog> = ({
 	subcategories
 }) => {
 	const { push, asPath } = useRouter()
+	const { viewportWidth } = useViewportWidth()
 
 	const isAdminPage = asPath === PAGES.admin
 
 	const { ref, inView } = useInView({
 		threshold: 0
 	})
+
+	const [isSidebarOpen, setIsSidebarOpen] = useState(false)
+
+	useEffect(() => {
+		if (!inView) setIsSidebarOpen(false)
+	}, [inView])
 
 	return (
 		<>
@@ -65,18 +75,47 @@ const Catalog: FC<ICatalog> = ({
 						<Text>{additionalTitle}</Text>
 					</div>
 				)}
+				{sidebar && (
+					<div>
+						<div
+							onClick={() => {
+								scroller.scrollTo('shop-content', {
+									duration: 500,
+									smooth: 'easeInOutQuart',
+									offset:
+										viewportWidth < 575
+											? -VARS.headerHeightMobile + 1
+											: -VARS.headerHeight + 1
+								})
+								setIsSidebarOpen(true)
+							}}
+							className={styles.open}
+						>
+							<CopyIcon />
+							<Text size='body-medium' color='accent-dark'>
+								{subcategories ? 'Підкатегорії' : 'Категорії'}
+							</Text>
+						</div>
+					</div>
+				)}
 			</div>
 			<section className={styles.section}>
 				{sidebar && (
 					<>
 						<div className={styles.observe} ref={ref} />
-						<Sidebar pin={inView} subcategories={subcategories} />
+						<Sidebar
+							setIsSidebarOpen={setIsSidebarOpen}
+							pin={viewportWidth <= 796 ? inView && isSidebarOpen : inView}
+							subcategories={subcategories}
+						/>
 					</>
 				)}
 				<div
+					id='shop-content'
 					className={clsx(styles.content, {
 						[styles.content_sidebar]: sidebar,
-						[styles.content_pin]: sidebar && inView
+						[styles.content_pin]:
+							sidebar && viewportWidth <= 796 ? inView && isSidebarOpen : inView
 					})}
 				>
 					{isLoading ? (
@@ -90,10 +129,10 @@ const Catalog: FC<ICatalog> = ({
 								  ))
 								: !isAdminPage && (
 										<Text
-											className={styles.message}
 											size='subheading-large'
 											color='accent-dark'
 											nowrap
+											className={styles.message}
 										>
 											Товари відсутні
 										</Text>

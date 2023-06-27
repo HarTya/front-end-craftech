@@ -68,7 +68,10 @@ const CatalogPagination: FC<ICatalogPagination> = ({ title, data }) => {
 							scroller.scrollTo('shop-content', {
 								duration: 500,
 								smooth: 'easeInOutQuart',
-								offset: -VARS.headerHeight + 1
+								offset:
+									viewportWidth < 575
+										? -VARS.headerHeightMobile + 1
+										: -VARS.headerHeight + 1
 							})
 							setIsSidebarOpen(true)
 						}}
@@ -89,11 +92,15 @@ const CatalogPagination: FC<ICatalogPagination> = ({ title, data }) => {
 			</div>
 			<section className={styles.section}>
 				<div className={styles.observe} ref={ref} />
-				<Sidebar pin={viewportWidth < 796 ? isSidebarOpen && inView : inView} />
+				<Sidebar
+					setIsSidebarOpen={setIsSidebarOpen}
+					pin={viewportWidth <= 796 ? inView && isSidebarOpen : inView}
+				/>
 				<div
 					id='shop-content'
 					className={clsx(styles.content, {
-						[styles.content_pin]: inView
+						[styles.content_pin]:
+							viewportWidth <= 796 ? inView && isSidebarOpen : inView
 					})}
 				>
 					{isLoading ? (
@@ -126,10 +133,10 @@ const CatalogPagination: FC<ICatalogPagination> = ({ title, data }) => {
 						</>
 					) : (
 						<Text
-							className={styles.message}
 							size='subheading-large'
 							color='accent-dark'
 							nowrap
+							className={styles.message}
 						>
 							Товари відсутні
 						</Text>

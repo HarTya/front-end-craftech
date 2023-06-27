@@ -10,11 +10,15 @@ import CatalogPagination from '@/ui/catalog/CatalogPagination'
 
 import { VARS } from '@/config/variables.config'
 
+import { useViewportWidth } from '@/hooks/useViewportWidth'
+
 import { IProductsPagination } from '@/types/product.interface'
 
 import styles from './Home.module.scss'
 
 const Home: FC<IProductsPagination> = ({ products, length }) => {
+	const { viewportWidth } = useViewportWidth()
+
 	return (
 		<Layout title='Головна' description='Головна сторінка'>
 			<section>
@@ -42,7 +46,11 @@ const Home: FC<IProductsPagination> = ({ products, length }) => {
 						</Text>
 						<ScrollLink
 							to='shop'
-							offset={-VARS.headerHeight}
+							offset={
+								viewportWidth < 575
+									? -VARS.headerHeightMobile
+									: -VARS.headerHeight
+							}
 							spy={true}
 							smooth={true}
 							duration={500}

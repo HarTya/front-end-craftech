@@ -1,7 +1,7 @@
 import clsx from 'clsx'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
-import { FC } from 'react'
+import { Dispatch, FC, SetStateAction, useEffect } from 'react'
 
 import Text from '@/ui/Text'
 import FacebookIcon from '@/ui/icons/Social/FacebookIcon'
@@ -10,6 +10,9 @@ import TikTokIcon from '@/ui/icons/Social/TikTokIcon'
 
 import { PAGES } from '@/config/pages.config'
 
+import { useOutside } from '@/hooks/useOutside'
+import { useViewportWidth } from '@/hooks/useViewportWidth'
+
 import { ISubcategoryObject } from '@/types/subcategory.interface'
 
 import Categories from './Categories'
@@ -17,15 +20,28 @@ import styles from './Sidebar.module.scss'
 import Subcategories from './Subcategories'
 
 const Sidebar: FC<{
+	setIsSidebarOpen: Dispatch<SetStateAction<boolean>>
 	pin: boolean
 	subcategories?: ISubcategoryObject[]
-}> = ({ pin, subcategories }) => {
+}> = ({ setIsSidebarOpen, pin, subcategories }) => {
 	const { asPath } = useRouter()
+	const { viewportWidth } = useViewportWidth()
+
+	const { isOpen, setIsOpen, ref } = useOutside(false)
+
+	useEffect(() => {
+		setIsOpen(pin)
+	}, [pin])
+
+	useEffect(() => {
+		if (!isOpen && setIsSidebarOpen) setIsSidebarOpen(false)
+	}, [isOpen])
 
 	return (
 		<aside
+			ref={ref}
 			className={clsx(styles.aside, {
-				[styles.aside_pin]: pin
+				[styles.aside_pin]: viewportWidth <= 796 ? (!isOpen ? false : pin) : pin
 			})}
 		>
 			<div className={styles.title}>
