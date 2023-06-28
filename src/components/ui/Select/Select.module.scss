@@ -47,9 +47,9 @@
 
 .title {
 	position: absolute;
-	top: $border_width-medium;
-	right: $border_width-medium;
-	bottom: $border_width-medium;
+	top: $border_width-thick;
+	right: $border_width-thick;
+	bottom: $border_width-thick;
 	left: $border_width-medium;
 	padding-left: 15px;
 	justify-content: flex-start;
@@ -59,7 +59,7 @@
 .arrow {
 	position: absolute;
 	top: $border_width-thick;
-	right: $border_width-medium;
+	right: $border_width-thick;
 	bottom: $border_width-thick;
 	z-index: 1;
 	padding-right: 15px;

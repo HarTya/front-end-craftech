@@ -96,7 +96,6 @@
 	justify-content: flex-start;
 	align-items: center;
 	max-width: 95%;
-	overflow: hidden;
 	height: 40px;
 
 	&_arrow {
@@ -136,5 +135,144 @@
 		width: 90%;
 		margin-top: 44px;
 		overflow: hidden;
+	}
+}
+
+@media screen and (max-width: 1600px) {
+	.content {
+		flex-direction: column;
+
+		&_left {
+			width: 100%;
+			margin-bottom: 50px;
+		}
+
+		&_right {
+			width: 100%;
+		}
+	}
+
+	.top {
+		max-width: 100%;
+	}
+}
+
+@media screen and (max-width: 1440px) {
+	.content {
+		&_bottom {
+			flex-direction: column;
+		}
+	}
+
+	.description {
+		width: 100%;
+
+		&_content {
+			width: 100%;
+		}
+	}
+}
+
+@media screen and (max-width: 1111px) {
+	.section {
+		padding: 59px 30px;
+	}
+
+	.content {
+		&_right {
+			> div:first-child {
+				padding: 0 30px 0 30px;
+			}
+
+			> div:nth-child(2) {
+				padding: 0 30px 0 30px;
+
+				> div:first-child {
+					padding-right: 4.69%;
+				}
+			}
+
+			> div:nth-child(3) {
+				padding: 40px 30px 40px 30px;
+			}
+		}
+	}
+}
+
+@media screen and (max-width: 768px) {
+	.content {
+		&_right {
+			> div {
+				flex-direction: column;
+			}
+
+			> div:first-child {
+				height: auto;
+				padding: 20px 30px;
+				text-align: center;
+
+				> div:not(:first-child) {
+					margin-top: 10px;
+				}
+			}
+
+			> div:nth-child(2) {
+				height: auto;
+				padding: 20px 30px 30px 30px;
+
+				> div:first-child {
+					padding-right: 0;
+				}
+			}
+
+			> div:nth-child(3) {
+				padding: 30px;
+				height: auto;
+				text-align: center;
+
+				> div {
+					flex-direction: column;
+
+					&:not(:last-child) {
+						margin-bottom: 30px;
+					}
+
+					> div:nth-child(2) {
+						margin: 20px 0;
+					}
+
+					> div:last-child {
+						width: auto;
+					}
+				}
+			}
+		}
+	}
+}
+
+@media screen and (max-width: 575px) {
+	.top {
+		height: 28px;
+
+		&_arrow {
+			> svg {
+				width: 22px;
+				height: 22px;
+			}
+		}
+	}
+
+	.link {
+		width: 100%;
+	}
+
+	.rating {
+		height: auto;
+		align-items: flex-start;
+		flex-direction: column;
+
+		div:last-child {
+			margin: 10px 0 0 5px;
+		}
 	}
 }

@@ -56,39 +56,41 @@ const Review: FC<{ data: IReviewObjectUser }> = ({ data }) => {
 						blurDataURL={data.user.avatarPath}
 					/>
 				</div>
-				<div className={styles.info}>
-					<Text size='body-medium' color='accent-dark'>
-						{data.user.firstName}
-					</Text>
-					<Text size='body' color='accent'>
-						{data.user.role === EnumUserRole.USER
-							? 'Відгук від покупця'
-							: 'Відгук від адміністратора'}
-					</Text>
-					<div className={styles.rating}>
-						<Rating
-							readonly
-							initialValue={data.rating}
-							SVGstyle={{
-								display: 'inline-block'
-							}}
-							size={16}
-							allowFraction
-							transition
-						/>
+				<div>
+					<div className={styles.info}>
+						<Text size='body-medium' color='accent-dark'>
+							{data.user.firstName}
+						</Text>
+						<Text size='body' color='accent'>
+							{data.user.role === EnumUserRole.USER
+								? 'Відгук від покупця'
+								: 'Відгук від адміністратора'}
+						</Text>
+						<div className={styles.rating}>
+							<Rating
+								readonly
+								initialValue={data.rating}
+								SVGstyle={{
+									display: 'inline-block'
+								}}
+								size={16}
+								allowFraction
+								transition
+							/>
+						</div>
 					</div>
+					{isAuthor && (
+						<>
+							{isLoading ? (
+								<TailSpin width={40} height={40} color={COLORS.accentDark} />
+							) : (
+								<div onClick={() => mutate()} className={styles.delete}>
+									<TrashIcon />
+								</div>
+							)}
+						</>
+					)}
 				</div>
-				{isAuthor && (
-					<>
-						{isLoading ? (
-							<TailSpin width={40} height={40} color={COLORS.accentDark} />
-						) : (
-							<div onClick={() => mutate()} className={styles.delete}>
-								<TrashIcon />
-							</div>
-						)}
-					</>
-				)}
 			</div>
 			<Text size='body' color='accent-dark' prewrap className={styles.text}>
 				{data.text}

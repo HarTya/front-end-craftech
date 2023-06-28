@@ -12,6 +12,8 @@ import ArrowIconRightMedium from '@/ui/icons/Arrow/ArrowIconRightMedium'
 import { dynamicPageHref } from '@/config/pages.config'
 import { VARS } from '@/config/variables.config'
 
+import { useViewportWidth } from '@/hooks/useViewportWidth'
+
 import { IProductObjectFullset } from '@/types/product.interface'
 
 import { formatToCurrency } from '@/utils/format-to-currency'
@@ -24,6 +26,8 @@ import Reviews from './Reviews'
 import { ReviewService } from '@/services/review.service'
 
 const Product: FC<{ data: IProductObjectFullset }> = ({ data }) => {
+	const { viewportWidth } = useViewportWidth()
+
 	const { data: reviews, isLoading } = useQuery(
 		['get reviews by product', data.slug],
 		() => ReviewService.getReviewsByProduct(data.slug),
@@ -61,7 +65,11 @@ const Product: FC<{ data: IProductObjectFullset }> = ({ data }) => {
 						</div>
 						<ScrollLink
 							to='reviews'
-							offset={-VARS.headerHeight - 62}
+							offset={
+								viewportWidth <= 575
+									? -VARS.headerHeightMobile - 62
+									: -VARS.headerHeight - 62
+							}
 							spy={true}
 							smooth={true}
 							duration={750}

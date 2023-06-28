@@ -63,6 +63,24 @@
 	}
 }
 
+@media screen and (max-width: 1600px) {
+	.main {
+		width: 100%;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		flex-direction: column;
+
+		.image {
+			width: 100%;
+		}
+
+		.bottom {
+			width: 100%;
+		}
+	}
+}
+
 @media screen and (max-width: 780px) {
 	.image {
 		min-width: 0;

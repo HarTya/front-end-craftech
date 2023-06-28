@@ -14,3 +14,19 @@
 .favorite {
 	margin-left: 3.13%;
 }
+
+@media screen and (max-width: 768px) {
+	.addToCart {
+		width: 100%;
+		max-width: 300px;
+		margin: 20px 0 0 0;
+	}
+
+	.select {
+		margin: 20px 0 0 0;
+	}
+
+	.favorite {
+		margin: 20px 0 0 0;
+	}
+}

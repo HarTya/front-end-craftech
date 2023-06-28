@@ -51,7 +51,7 @@ const NewReview: FC<{ productId: string | number }> = ({ productId }) => {
 	return (
 		<>
 			<div className={styles.open} onClick={() => setIsModalOpen(true)}>
-				<Text size='body-medium' color='accent-dark'>
+				<Text size='body-medium' color='accent-dark' nowrap>
 					Додати відгук
 				</Text>
 			</div>

@@ -17,6 +17,13 @@
 	justify-content: center;
 	align-items: center;
 	margin-bottom: 20px;
+
+	> div:last-child {
+		width: calc(100% - 70px);
+		display: flex;
+		justify-content: center;
+		align-items: center;
+	}
 }
 
 .image {
@@ -50,4 +57,26 @@
 
 .text {
 	overflow: hidden;
+}
+
+@media screen and (max-width: 575px) {
+	.main {
+		padding: 30px;
+	}
+
+	.top {
+		flex-direction: column;
+
+		> div:last-child {
+			width: 100%;
+		}
+	}
+
+	.image {
+		margin-bottom: 20px;
+	}
+
+	.info {
+		margin-left: 0;
+	}
 }

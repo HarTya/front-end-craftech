@@ -34,10 +34,12 @@ const Reviews: FC<{
 			) : (
 				<>
 					<div className={styles.top}>
-						<Text topline>Відгуки</Text>
-						<Text color='accent' className={styles.count}>
-							{reviews.length}
-						</Text>
+						<div>
+							<Text topline>Відгуки</Text>
+							<Text color='accent' className={styles.count}>
+								{reviews.length}
+							</Text>
+						</div>
 						{isLoading ? (
 							<TailSpin width={40} height={40} color={COLORS.accentDark} />
 						) : (

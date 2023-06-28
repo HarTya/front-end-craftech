@@ -12,6 +12,13 @@
 	display: flex;
 	justify-content: flex-start;
 	align-items: center;
+
+	> div:first-child {
+		width: calc(100% - 193px);
+		display: flex;
+		justify-content: center;
+		align-items: center;
+	}
 }
 
 .count {
@@ -22,4 +29,31 @@
 .content {
 	width: 100%;
 	margin-top: 44px;
+}
+
+@media screen and (max-width: 1440px) {
+	.section {
+		margin-top: 62px;
+		width: 100%;
+	}
+}
+
+@media screen and (max-width: 575px) {
+	.top {
+		height: auto;
+		flex-direction: column;
+
+		> div:first-child {
+			width: 100%;
+		}
+	}
+
+	.count {
+		margin-left: auto;
+		margin-right: 0;
+	}
+
+	.content {
+		margin-top: 21px;
+	}
 }

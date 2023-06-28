@@ -33,3 +33,29 @@
 		}
 	}
 }
+
+@media screen and (max-width: 1111px) {
+	.main {
+		padding: 33px 30px;
+
+		&_button {
+			padding-bottom: 11px;
+		}
+	}
+}
+
+@media screen and (max-width: 768px) {
+	.main {
+		padding: 30px;
+
+		&_button {
+			padding-bottom: 11px;
+		}
+	}
+}
+
+@media screen and (max-width: 575px) {
+	.content {
+		grid-template-columns: repeat(1, 100%);
+	}
+}

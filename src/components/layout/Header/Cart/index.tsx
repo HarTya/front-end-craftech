@@ -17,6 +17,7 @@ import { PAGES } from '@/config/pages.config'
 import { COLORS } from '@/config/variables.config'
 
 import { useActions } from '@/hooks/useActions'
+import { useAuth } from '@/hooks/useAuth'
 import { useCart } from '@/hooks/useCart'
 import { useOrders } from '@/hooks/useOrders'
 import { useOutside } from '@/hooks/useOutside'
@@ -66,6 +67,8 @@ const Cart: FC<{ className: string }> = ({ className }) => {
 
 	const { profile, isLoading: isProfileLoading, isError } = useProfile()
 
+	const { user } = useAuth()
+
 	const [isAuth, setIsAuth] = useState(false)
 
 	const [pickupType, setPickupType] = useState<EnumOrderPickupType>(
@@ -89,13 +92,13 @@ const Cart: FC<{ className: string }> = ({ className }) => {
 	})
 
 	useEffect(() => {
-		if (!isProfileLoading && !isError && profile) {
+		if (!isProfileLoading && !isError && profile && user) {
 			setIsAuth(true)
 			setValue('phone', profile.phone)
 			setValue('lastName', profile.lastName)
 			setValue('firstName', profile.firstName)
 		}
-	}, [profile])
+	}, [profile, user])
 
 	const onSubmit: SubmitHandler<
 		IOrderData & IOrderUnauthorizedData
