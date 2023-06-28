@@ -226,7 +226,7 @@
 			}
 
 			> div:nth-child(3) {
-				padding: 30px;
+				padding: 30px 15px;
 				height: auto;
 				text-align: center;
 
@@ -252,7 +252,7 @@
 
 @media screen and (max-width: 575px) {
 	.top {
-		height: 28px;
+		height: 29px;
 
 		&_arrow {
 			> svg {
@@ -271,8 +271,12 @@
 		align-items: flex-start;
 		flex-direction: column;
 
+		> span:first-child {
+			margin: 0 auto;
+		}
+
 		div:last-child {
-			margin: 10px 0 0 5px;
+			margin: 10px auto 0 auto;
 		}
 	}
 }

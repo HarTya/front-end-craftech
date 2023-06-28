@@ -53,10 +53,6 @@ const CatalogPagination: FC<ICatalogPagination> = ({ title, data }) => {
 
 	const [isSidebarOpen, setIsSidebarOpen] = useState(false)
 
-	useEffect(() => {
-		if (!inView) setIsSidebarOpen(false)
-	}, [inView])
-
 	return (
 		<>
 			<div className={styles.top}>
@@ -64,20 +60,7 @@ const CatalogPagination: FC<ICatalogPagination> = ({ title, data }) => {
 					{title}
 				</Text>
 				<div className={styles.actions}>
-					<div
-						onClick={() => {
-							scroller.scrollTo('shop-content', {
-								duration: 500,
-								smooth: 'easeInOutQuart',
-								offset:
-									viewportWidth <= 575
-										? -VARS.headerHeightMobile / 2
-										: -VARS.headerHeight / 2
-							})
-							setIsSidebarOpen(true)
-						}}
-						className={styles.open}
-					>
+					<div onClick={() => setIsSidebarOpen(true)} className={styles.open}>
 						<Text size='body-small' color='accent-dark' nowrap>
 							Категорії
 						</Text>
@@ -93,8 +76,9 @@ const CatalogPagination: FC<ICatalogPagination> = ({ title, data }) => {
 			<section className={styles.section}>
 				<div className={styles.observe} ref={ref} />
 				<Sidebar
+					isSidebarOpen={isSidebarOpen}
 					setIsSidebarOpen={setIsSidebarOpen}
-					pin={viewportWidth <= 796 ? inView && isSidebarOpen : inView}
+					pin={viewportWidth <= 796 ? isSidebarOpen : inView}
 				/>
 				<div
 					id='shop-content'

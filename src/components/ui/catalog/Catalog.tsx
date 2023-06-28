@@ -1,9 +1,8 @@
 import clsx from 'clsx'
 import { useRouter } from 'next/router'
-import { FC, useEffect, useState } from 'react'
+import { FC, useState } from 'react'
 import { useInView } from 'react-intersection-observer'
 import { TailSpin } from 'react-loader-spinner'
-import { scroller } from 'react-scroll'
 
 import Button from '@/ui/Button'
 import Text from '@/ui/Text'
@@ -11,7 +10,7 @@ import ArrowIconLeft from '@/ui/icons/Arrow/ArrowIconLeft'
 import ArrowIconRightLarge from '@/ui/icons/Arrow/ArrowIconRightLarge'
 
 import { PAGES } from '@/config/pages.config'
-import { COLORS, VARS } from '@/config/variables.config'
+import { COLORS } from '@/config/variables.config'
 
 import { useViewportWidth } from '@/hooks/useViewportWidth'
 
@@ -41,10 +40,6 @@ const Catalog: FC<ICatalog> = ({
 	})
 
 	const [isSidebarOpen, setIsSidebarOpen] = useState(false)
-
-	useEffect(() => {
-		if (!inView) setIsSidebarOpen(false)
-	}, [inView])
 
 	return (
 		<>
@@ -77,20 +72,7 @@ const Catalog: FC<ICatalog> = ({
 				)}
 				{sidebar && (
 					<div className={styles.actions}>
-						<div
-							onClick={() => {
-								scroller.scrollTo('shop-content', {
-									duration: 500,
-									smooth: 'easeInOutQuart',
-									offset:
-										viewportWidth <= 575
-											? -VARS.headerHeightMobile + 1
-											: -VARS.headerHeight + 1
-								})
-								setIsSidebarOpen(true)
-							}}
-							className={styles.open}
-						>
+						<div onClick={() => setIsSidebarOpen(true)} className={styles.open}>
 							<Text size='body-small' color='accent-dark' nowrap>
 								{subcategories ? 'Підкатегорії' : 'Категорії'}
 							</Text>
@@ -103,8 +85,9 @@ const Catalog: FC<ICatalog> = ({
 					<>
 						<div className={styles.observe} ref={ref} />
 						<Sidebar
+							isSidebarOpen={isSidebarOpen}
 							setIsSidebarOpen={setIsSidebarOpen}
-							pin={viewportWidth <= 796 ? inView && isSidebarOpen : inView}
+							pin={viewportWidth <= 796 ? isSidebarOpen : inView}
 							subcategories={subcategories}
 						/>
 					</>
@@ -113,8 +96,7 @@ const Catalog: FC<ICatalog> = ({
 					id='shop-content'
 					className={clsx(styles.content, {
 						[styles.content_sidebar]: sidebar,
-						[styles.content_pin]:
-							sidebar && viewportWidth <= 796 ? inView && isSidebarOpen : inView
+						[styles.content_pin]: inView
 					})}
 				>
 					{isLoading ? (
