@@ -23,47 +23,49 @@ const CartItem: FC<{ item: ICartItem }> = ({ item }) => {
 						quality={100}
 					/>
 				</div>
-				<div>
-					<Text size='body' className={styles.name}>
-						{item.product.name}
-					</Text>
-					<div className={styles.price}>
-						{item.quantity >= 20 ? (
-							<Text size='body-large' color='accent'>
-								Договірна ціна
-							</Text>
-						) : (
-							<>
-								<Text size='subheading-medium' color='accent'>
-									{formatToCurrency(item.product.price)}
+				<div className={styles.top}>
+					<div>
+						<Text size='body' className={styles.name}>
+							{item.product.name}
+						</Text>
+						<div className={styles.price}>
+							{item.quantity >= 20 ? (
+								<Text size='body-large' color='accent'>
+									Договірна ціна
 								</Text>
-								{item.quantity >= 10 ? (
-									<Text size='body-small' color='accent-dark'>
-										-10%
+							) : (
+								<>
+									<Text size='subheading-medium' color='accent'>
+										{formatToCurrency(item.product.price)}
 									</Text>
-								) : item.quantity >= 5 ? (
-									<Text size='body-small' color='accent-dark'>
-										-5%
-									</Text>
-								) : (
-									<></>
-								)}
-							</>
-						)}
+									{item.quantity >= 10 ? (
+										<Text size='body-small' color='accent-dark'>
+											-10%
+										</Text>
+									) : item.quantity >= 5 ? (
+										<Text size='body-small' color='accent-dark'>
+											-5%
+										</Text>
+									) : (
+										<></>
+									)}
+								</>
+							)}
+						</div>
 					</div>
-				</div>
-				<div>
-					<Text size='body' color='accent'>
-						Розмір:
-					</Text>
-					<Text
-						className={styles.size}
-						size='body-small'
-						color='accent-dark'
-						nowrap
-					>
-						{item.size}
-					</Text>
+					<div>
+						<Text size='body' color='accent'>
+							Розмір:
+						</Text>
+						<Text
+							className={styles.size}
+							size='body-small'
+							color='accent-dark'
+							nowrap
+						>
+							{item.size}
+						</Text>
+					</div>
 				</div>
 			</div>
 			<CartActions item={item} />

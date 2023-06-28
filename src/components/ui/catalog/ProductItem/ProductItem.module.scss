@@ -81,37 +81,3 @@
 	justify-content: center;
 	align-items: center;
 }
-
-@media screen and (max-width: 575px) {
-	.main {
-		width: 183px;
-		height: 241px;
-		padding-right: 7px;
-		padding-bottom: 7px;
-	}
-
-	.top {
-		height: 13px;
-	}
-
-	.image {
-		width: 176px;
-		height: 148px;
-	}
-
-	.content {
-		padding: 22px 5px 0 10px;
-	}
-
-	.rating {
-		height: 10px;
-
-		> div:last-child {
-			margin-left: 5px;
-		}
-	}
-
-	.bottom {
-		height: 20px;
-	}
-}

@@ -1,15 +1,11 @@
 import { FC } from 'react'
 
-import { useViewportWidth } from '@/hooks/useViewportWidth'
-
 const FavoriteIcon: FC = () => {
-	const { viewportWidth } = useViewportWidth()
-
 	return (
 		<svg
 			xmlns='http://www.w3.org/2000/svg'
-			width={viewportWidth <= 575 ? 22 : 35}
-			height={viewportWidth <= 575 ? 22 : 35}
+			width='35'
+			height='35'
 			viewBox='0 0 35 35'
 			fill='none'
 		>

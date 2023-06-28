@@ -40,7 +40,6 @@
 			> button {
 				width: 100%;
 				max-width: 370px;
-				padding: 0;
 			}
 		}
 
@@ -158,6 +157,31 @@
 			&_open {
 				top: 0;
 				bottom: auto;
+			}
+		}
+	}
+}
+
+@media screen and (max-width: 575px) {
+	.main {
+		&_bottom {
+			padding: 0 20px 0 26px;
+
+			> div {
+				padding-bottom: 30px;
+			}
+		}
+	}
+
+	.form {
+		flex-direction: column;
+
+		> div {
+			width: 100%;
+			max-width: 366px;
+
+			&:first-child {
+				margin-right: 0;
 			}
 		}
 	}

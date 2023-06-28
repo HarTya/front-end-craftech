@@ -5,7 +5,6 @@ import Text from '@/ui/Text'
 import ArrowIconDownLarge from '@/ui/icons/Arrow/ArrowIconDownLarge'
 
 import { useOutside } from '@/hooks/useOutside'
-import { useViewportWidth } from '@/hooks/useViewportWidth'
 
 import { EnumOrderPickupType } from '@/types/order.interface'
 
@@ -31,8 +30,6 @@ const Select: FC<ISelect> = ({
 	disabled = false,
 	className
 }) => {
-	const { viewportWidth } = useViewportWidth()
-
 	const { isOpen, setIsOpen, ref } = useOutside(false)
 
 	const [isActive, setIsActive] = useState(false)
@@ -100,13 +97,7 @@ const Select: FC<ISelect> = ({
 			)}
 		>
 			<Text
-				size={
-					viewportWidth <= 575
-						? 'body'
-						: placeholder
-						? 'body-small'
-						: 'body-medium'
-				}
+				size='body-small'
 				color={error ? 'error' : 'accent-dark'}
 				nowrap
 				className={styles.title}

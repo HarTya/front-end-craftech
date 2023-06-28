@@ -10,7 +10,6 @@ import Select from '@/ui/Select'
 import Text from '@/ui/Text'
 import ProductItem from '@/ui/catalog/ProductItem'
 import Sidebar from '@/ui/catalog/Sidebar'
-import CopyIcon from '@/ui/icons/Copy/CopyIcon'
 
 import { COLORS, VARS } from '@/config/variables.config'
 
@@ -72,18 +71,14 @@ const CatalogPagination: FC<ICatalogPagination> = ({ title, data }) => {
 								smooth: 'easeInOutQuart',
 								offset:
 									viewportWidth <= 575
-										? -VARS.headerHeightMobile + 1
-										: -VARS.headerHeight + 1
+										? -VARS.headerHeightMobile / 2
+										: -VARS.headerHeight / 2
 							})
 							setIsSidebarOpen(true)
 						}}
 						className={styles.open}
 					>
-						<CopyIcon />
-						<Text
-							size={viewportWidth <= 575 ? 'body' : 'body-medium'}
-							color='accent-dark'
-						>
+						<Text size='body-small' color='accent-dark' nowrap>
 							Категорії
 						</Text>
 					</div>
@@ -104,8 +99,7 @@ const CatalogPagination: FC<ICatalogPagination> = ({ title, data }) => {
 				<div
 					id='shop-content'
 					className={clsx(styles.content, {
-						[styles.content_pin]:
-							viewportWidth <= 796 ? inView && isSidebarOpen : inView
+						[styles.content_pin]: inView
 					})}
 				>
 					{isLoading ? (

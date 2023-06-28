@@ -10,7 +10,6 @@ import { COLORS } from '@/config/variables.config'
 
 import { useAuth } from '@/hooks/useAuth'
 import { useProfile } from '@/hooks/useProfile'
-import { useViewportWidth } from '@/hooks/useViewportWidth'
 
 import { IFavoriteButton } from './FavoriteButton.interface'
 import styles from './FavoriteButton.module.scss'
@@ -21,8 +20,6 @@ const FavoriteButton: FC<IFavoriteButton> = ({
 	variant = 'accent',
 	className
 }) => {
-	const { viewportWidth } = useViewportWidth()
-
 	const { user } = useAuth()
 
 	const { profile } = useProfile()
@@ -47,11 +44,7 @@ const FavoriteButton: FC<IFavoriteButton> = ({
 
 	return variant === 'accent' ? (
 		isLoading ? (
-			<TailSpin
-				width={viewportWidth <= 575 ? 17 : 30}
-				height={viewportWidth <= 575 ? 17 : 30}
-				color={COLORS.accent}
-			/>
+			<TailSpin width={30} height={30} color={COLORS.accent} />
 		) : (
 			<div className={clsx(styles.main, className)} onClick={() => mutate()}>
 				{isExists ? <FavoriteIconAccent fill /> : <FavoriteIconAccent />}
@@ -60,8 +53,8 @@ const FavoriteButton: FC<IFavoriteButton> = ({
 	) : isLoading ? (
 		<TailSpin
 			wrapperClass={className}
-			width={viewportWidth <= 575 ? 22 : 35}
-			height={viewportWidth <= 575 ? 22 : 35}
+			width={35}
+			height={35}
 			color={COLORS.accentDark}
 		/>
 	) : (

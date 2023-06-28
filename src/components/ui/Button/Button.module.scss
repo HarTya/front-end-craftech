@@ -7,7 +7,7 @@
 	justify-content: center;
 	align-items: center;
 	padding: 0 15px;
-	height: 50px;
+	min-height: 50px;
 	font-weight: 700;
 	color: $color-accent-dark;
 	background-color: $color-accent;
@@ -47,22 +47,11 @@
 }
 
 @media screen and (max-width: 575px) {
-	.main {
-		border: $border_width-medium-mobile solid $color-accent;
-	}
-
-	.default {
-		height: 27px;
-		font-size: $font_size-body-mobile;
-	}
-
 	.medium {
-		height: 27px;
-		font-size: $font_size-body-medium-mobile;
+		font-size: $font_size-body-small;
 	}
 
 	.large {
-		height: 37px;
-		font-size: $font_size-subheading-mobile;
+		font-size: $font_size-body-small;
 	}
 }

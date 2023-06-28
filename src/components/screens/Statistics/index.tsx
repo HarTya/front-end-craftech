@@ -23,7 +23,7 @@ const Statistics: FC<{ data: StatisticsResponse; isLoading: boolean }> = ({
 
 	return (
 		<>
-			<div className={styles.title}>
+			<div className={styles.top}>
 				<div className={styles.back} onClick={() => push(PAGES.admin)}>
 					<Button rounder hover>
 						<ArrowIconLeft />

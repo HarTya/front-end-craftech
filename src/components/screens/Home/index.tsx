@@ -27,8 +27,7 @@ const Home: FC<IProductsPagination> = ({ products, length }) => {
 						<Image
 							src='/images/hello.jpeg'
 							alt='Hello'
-							width={1111}
-							height={479}
+							layout='fill'
 							objectFit='cover'
 							quality={100}
 							placeholder='blur'

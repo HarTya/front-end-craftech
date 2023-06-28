@@ -2,16 +2,12 @@ import { FC } from 'react'
 
 import { COLORS } from '@/config/variables.config'
 
-import { useViewportWidth } from '@/hooks/useViewportWidth'
-
 const FavoriteIconAccent: FC<{ fill?: boolean }> = ({ fill }) => {
-	const { viewportWidth } = useViewportWidth()
-
 	return (
 		<svg
 			xmlns='http://www.w3.org/2000/svg'
-			width={viewportWidth <= 575 ? 17 : 30}
-			height={viewportWidth <= 575 ? 15 : 27}
+			width='30'
+			height='27'
 			viewBox='0 0 30 27'
 			fill={fill ? COLORS.accent : 'none'}
 		>

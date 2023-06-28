@@ -5,6 +5,7 @@ import { useRouter } from 'next/router'
 import { FC, useEffect } from 'react'
 
 import Text from '@/ui/Text'
+import CrossMenuIcon from '@/ui/icons/Cross/CrossMenuIcon'
 import FavoriteIcon from '@/ui/icons/Favorite/FavoriteIcon'
 import MenuIcon from '@/ui/icons/Menu/MenuIcon'
 import UserIcon from '@/ui/icons/User/UserIcon'
@@ -58,7 +59,7 @@ const Header: FC = () => {
 					/>
 				</Link>
 				<div onClick={() => toggleMenu()} className={styles.menu}>
-					<MenuIcon />
+					{isMenuOpen ? <CrossMenuIcon /> : <MenuIcon />}
 				</div>
 				<nav
 					className={clsx(styles.nav, {

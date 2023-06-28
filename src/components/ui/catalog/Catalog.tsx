@@ -9,7 +9,6 @@ import Button from '@/ui/Button'
 import Text from '@/ui/Text'
 import ArrowIconLeft from '@/ui/icons/Arrow/ArrowIconLeft'
 import ArrowIconRightLarge from '@/ui/icons/Arrow/ArrowIconRightLarge'
-import CopyIcon from '@/ui/icons/Copy/CopyIcon'
 
 import { PAGES } from '@/config/pages.config'
 import { COLORS, VARS } from '@/config/variables.config'
@@ -92,11 +91,7 @@ const Catalog: FC<ICatalog> = ({
 							}}
 							className={styles.open}
 						>
-							<CopyIcon />
-							<Text
-								size={viewportWidth <= 575 ? 'body' : 'body-medium'}
-								color='accent-dark'
-							>
+							<Text size='body-small' color='accent-dark' nowrap>
 								{subcategories ? 'Підкатегорії' : 'Категорії'}
 							</Text>
 						</div>
