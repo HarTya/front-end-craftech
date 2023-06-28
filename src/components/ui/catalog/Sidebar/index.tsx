@@ -81,11 +81,7 @@ const Sidebar: FC<{
 					<div className={styles.info}>
 						<Text size='body'>Інформація про компанію</Text>
 						<div>
-							<Text size='body'>+380 98 579 09 17</Text>
-							<Text size='body'>+380 98 579 09 17</Text>
-							<Text size='body'>+380 98 579 09 17</Text>
-							<Text size='body'>+380 98 579 09 17</Text>
-							<Text size='body'>+380 98 579 09 17</Text>
+							<Text size='body'>+380 66 700 37 39</Text>
 						</div>
 					</div>
 					<div className={styles.copyright}>

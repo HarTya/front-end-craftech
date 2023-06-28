@@ -36,12 +36,12 @@ const Home: FC<IProductsPagination> = ({ products, length }) => {
 					</div>
 					<div className={styles.content}>
 						<Text topline nowrap>
-							Ласкаво просимо
+							Сила в кожному кроці,
 						</Text>
-						<Text nowrap>на сайт CRAFTECH!</Text>
+						<Text nowrap>разом з CRAFTECH!</Text>
 						<Text size='subheading' color='accent'>
-							У нашому магазині ви зможете зручно придбати якісний військовий
-							одяг за вигідною ціною.
+							З 2014 року ми прагнули до досконалості, щоб запропонувати нашим
+							клієнтам надійний та комфортний одяг за прибавливою ціною.
 						</Text>
 						<ScrollLink
 							to='shop'
