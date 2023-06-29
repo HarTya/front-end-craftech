@@ -14,7 +14,7 @@ const ProductPage: NextPage<{ product: IProductObjectFullset }> = ({
 }) => {
 	const { replace } = useRouter()
 
-	if (!product) {
+	if (product === null) {
 		replace(PAGES.notFound)
 		return null
 	}

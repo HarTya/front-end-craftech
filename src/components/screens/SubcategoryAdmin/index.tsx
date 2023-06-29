@@ -90,7 +90,7 @@ const SubcategoryAdmin: FC<{ data: ISubcategoryObjectCategory }> = ({
 						? 'Нова категорія'
 						: `Категорія - ${data.category.name}`}
 				</Text>
-				<Text size='subheading-medium' color='accent'>
+				<Text size='subheading-large' color='accent'>
 					{!data.name ? 'Нова підкатегорія' : `Підкатегорія - ${data.name}`}
 				</Text>
 			</div>

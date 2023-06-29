@@ -52,7 +52,7 @@ const Home: FC<IProductsPagination> = ({ products, length }) => {
 							}
 							spy={true}
 							smooth={true}
-							duration={750}
+							duration={500}
 							className={styles.link}
 						>
 							<Button className={styles.button} size='large' hover>

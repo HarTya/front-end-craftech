@@ -54,11 +54,11 @@
 
 .observe {
 	position: absolute;
-	top: calc(100vh - $header-height);
+	top: calc(100dvh - $header-height);
 	left: 0;
 	z-index: -1;
 	width: 100%;
-	height: calc(100% - (100vh - $header-height));
+	height: calc(100% - (100dvh - $header-height));
 }
 
 .content {
@@ -67,7 +67,7 @@
 
 	&_sidebar {
 		width: calc(100% - 332px);
-		min-height: calc(100vh - $header-height);
+		min-height: calc(100dvh - $header-height);
 		padding: 0 90px 20px 93px;
 	}
 
@@ -168,15 +168,15 @@
 	}
 
 	.observe {
-		top: calc(100vh - $header-height-mobile);
-		height: calc(100% - (100vh - $header-height-mobile));
+		top: calc(100dvh - $header-height-mobile);
+		height: calc(100% - (100dvh - $header-height-mobile));
 	}
 
 	.content {
 		padding: 0 32px 20px 32px;
 
 		&_sidebar {
-			min-height: calc(100vh - $header-height-mobile);
+			min-height: calc(100dvh - $header-height-mobile);
 		}
 	}
 }

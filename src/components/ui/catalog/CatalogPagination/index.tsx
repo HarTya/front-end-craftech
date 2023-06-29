@@ -109,7 +109,6 @@ const CatalogPagination: FC<ICatalogPagination> = ({ title, data }) => {
 											onClick={() => {
 												setPage(pageNumber)
 												scroller.scrollTo('shop-content', {
-													duration: 750,
 													offset:
 														viewportWidth <= 575
 															? -VARS.headerHeightMobile

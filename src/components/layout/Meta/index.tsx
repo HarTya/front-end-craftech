@@ -2,7 +2,7 @@ import Head from 'next/head'
 import { useRouter } from 'next/router'
 import { FC, PropsWithChildren } from 'react'
 
-import { siteName, titleMerge } from './meta.config'
+import { descriptionMerge, siteName, titleMerge } from './meta.config'
 import { ISeo } from './meta.interface'
 
 const Meta: FC<PropsWithChildren<ISeo>> = ({ title, description, image }) => {
@@ -15,9 +15,13 @@ const Meta: FC<PropsWithChildren<ISeo>> = ({ title, description, image }) => {
 			{description ? (
 				<>
 					<meta
+						name='keywords'
+						content='craftech, CRAFTECH, craftech.com.ua, craftech com ua, Військовий одяг, Військове спорядження, Військовий одяг, Купити військовий одяг, Військовий камуфляж, Продаж військового одягу, Військовий магазин CRAFTECH, Купити уніформу, Військові аксесуари, Військові товари'
+					/>
+					<meta
 						itemProp='description'
 						name='description'
-						content={description}
+						content={descriptionMerge(description)}
 					/>
 					<link rel='canonical' href={currentUrl} />
 					<meta property='og:locale' content='uk' />
@@ -25,7 +29,10 @@ const Meta: FC<PropsWithChildren<ISeo>> = ({ title, description, image }) => {
 					<meta property='og:url' content={currentUrl} />
 					<meta property='og:image' content={image || '/images/logo.png'} />
 					<meta property='og:site_name' content={siteName} />
-					<meta property='og:description' content={description} />
+					<meta
+						property='og:description'
+						content={descriptionMerge(description)}
+					/>
 				</>
 			) : (
 				<meta name='robots' content='noindex, nofollow' />

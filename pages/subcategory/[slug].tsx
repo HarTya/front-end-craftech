@@ -22,7 +22,7 @@ const SubcategoryPage: NextPage<ISubcategoryPage> = ({
 }) => {
 	const { replace } = useRouter()
 
-	if (!products && !subcategory) {
+	if (products === null && subcategory === null) {
 		replace(PAGES.notFound)
 		return null
 	}

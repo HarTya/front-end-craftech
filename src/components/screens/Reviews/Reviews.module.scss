@@ -22,7 +22,7 @@
 
 .main {
 	width: 100%;
-	min-height: calc(100vh - ($header-height + 191px));
+	min-height: calc(100dvh - ($header-height + 191px));
 	display: flex;
 	justify-content: flex-start;
 	align-items: center;
@@ -48,7 +48,7 @@
 	}
 
 	.main {
-		min-height: calc(100vh - ($header-height-mobile + 223px));
+		min-height: calc(100dvh - ($header-height-mobile + 223px));
 		padding: 0 32px 43px 32px;
 	}
 }

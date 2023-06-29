@@ -16,8 +16,7 @@ import { ProductService } from '@/services/product.service'
 const CategoryPage: NextPage<ICategoryPage> = ({ products, category }) => {
 	const { replace } = useRouter()
 
-	if (!products && !category) {
-		console.log(products, category)
+	if (products === null && category === null) {
 		replace(PAGES.notFound)
 		return null
 	}
