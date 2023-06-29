@@ -17,6 +17,7 @@ const CategoryPage: NextPage<ICategoryPage> = ({ products, category }) => {
 	const { replace } = useRouter()
 
 	if (!products && !category) {
+		console.log(products, category)
 		replace(PAGES.notFound)
 		return null
 	}

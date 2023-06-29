@@ -12,10 +12,9 @@
 .aside {
 	padding-top: 43px;
 	width: 332px;
-	height: calc(100vh - ($header-height + 20px));
+	height: calc(100dvh - ($header-height + 20px));
 	border-right: $border_width-thin solid $color-accent;
 	border-bottom: $border_width-thin solid $color-accent;
-	margin-bottom: 20px;
 	background-color: white;
 	overflow-y: auto;
 
@@ -152,7 +151,7 @@
 
 @media screen and (max-width: 575px) {
 	.aside {
-		height: calc(100vh - ($header-height-mobile + 20px));
+		height: calc(100dvh - ($header-height-mobile + 20px));
 
 		&_section {
 			top: $header-height-mobile;
