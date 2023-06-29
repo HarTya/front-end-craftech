@@ -84,6 +84,21 @@
 		padding: 26px;
 	}
 
+	.top {
+		height: 36px;
+	}
+
+	.title {
+		max-width: calc(100% - 60px);
+	}
+
+	.close {
+		> svg {
+			width: 35px;
+			height: 35px;
+		}
+	}
+
 	.content {
 		margin-top: 20px;
 	}

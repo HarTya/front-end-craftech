@@ -165,11 +165,20 @@
 
 @media screen and (max-width: 575px) {
 	.main {
+		&_top {
+			padding-bottom: 172px;
+		}
+
 		&_bottom {
+			height: 151px;
 			padding: 0 20px 0 26px;
 
 			> div {
-				padding-bottom: 30px;
+				padding-bottom: 10px;
+
+				> button {
+					margin: 11px auto 0 auto;
+				}
 			}
 		}
 	}
