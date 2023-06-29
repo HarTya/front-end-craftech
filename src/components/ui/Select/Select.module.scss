@@ -89,21 +89,19 @@
 	border-radius: 0 0 $border_radius-small $border_radius-small;
 
 	&_scroll {
-		right: -$border_width-medium;
 		border-radius: 0 0 0 $border_radius-small;
 		overflow-y: auto;
-		-webkit-overflow-scrolling: auto !important;
 
 		&::-webkit-scrollbar {
-			width: $border_width-medium !important;
+			width: $border_width-medium;
 		}
 
 		&::-webkit-scrollbar-track {
-			background: transparent !important;
+			background: white;
 		}
 
 		&::-webkit-scrollbar-thumb {
-			background: $color-accent-dark !important;
+			background: $color-accent-dark;
 		}
 
 		> div:last-child {
