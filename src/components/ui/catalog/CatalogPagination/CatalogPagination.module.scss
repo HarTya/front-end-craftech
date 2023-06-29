@@ -123,10 +123,6 @@
 		padding: 43px 32px;
 	}
 
-	.select {
-		min-width: 100px;
-	}
-
 	.observe {
 		top: calc(100dvh - $header-height-mobile);
 		height: calc(100% - (100dvh - $header-height-mobile));
@@ -135,5 +131,20 @@
 	.content {
 		min-height: calc(100dvh - $header-height-mobile);
 		padding: 0 32px 20px 32px;
+	}
+}
+
+@media screen and (max-width: 429px) {
+	.actions {
+		flex-direction: column;
+	}
+
+	.open {
+		width: 100%;
+	}
+
+	.select {
+		width: 100%;
+		margin-top: 10px;
 	}
 }

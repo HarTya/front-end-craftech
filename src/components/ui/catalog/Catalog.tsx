@@ -110,7 +110,7 @@ const Catalog: FC<ICatalog> = ({
 								  ))
 								: !isAdminPage && (
 										<Text
-											size='subheading-large'
+											size='subheading-medium'
 											color='accent-dark'
 											nowrap
 											className={styles.message}

@@ -58,7 +58,7 @@ const Statistics: FC<{ data: StatisticsResponse; isLoading: boolean }> = ({
 						</Fragment>
 					))
 				) : (
-					<Text size='subheading-large' color='accent-dark' nowrap>
+					<Text size='subheading-medium' color='accent-dark' nowrap>
 						Статистика відсутня
 					</Text>
 				)}

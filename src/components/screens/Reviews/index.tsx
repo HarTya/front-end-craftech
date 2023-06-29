@@ -47,7 +47,7 @@ const Reviews: FC<{ data: IReviewObjectUser[]; isLoading: boolean }> = ({
 						/>
 					))
 				) : (
-					<Text size='subheading-large' color='accent-dark' nowrap>
+					<Text size='subheading-medium' color='accent-dark' nowrap>
 						Відгуки відсутні
 					</Text>
 				)}

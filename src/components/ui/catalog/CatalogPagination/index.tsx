@@ -124,7 +124,7 @@ const CatalogPagination: FC<ICatalogPagination> = ({ title, data }) => {
 						</>
 					) : (
 						<Text
-							size='subheading-large'
+							size='subheading-medium'
 							color='accent-dark'
 							nowrap
 							className={styles.message}

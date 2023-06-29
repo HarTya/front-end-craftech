@@ -457,7 +457,7 @@ const Cart: FC<{ className: string }> = ({ className }) => {
 							)}
 						</>
 					) : (
-						<Text size='subheading-large' color='accent-dark'>
+						<Text size='subheading-medium' color='accent-dark'>
 							Товари відсутні
 						</Text>
 					)}
