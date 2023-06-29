@@ -1,10 +1,10 @@
 import clsx from 'clsx'
+import Image from 'next/legacy/image'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
 import { Dispatch, FC, SetStateAction, useEffect } from 'react'
 
 import Text from '@/ui/Text'
-import FacebookIcon from '@/ui/icons/Social/FacebookIcon'
 import InstagramIcon from '@/ui/icons/Social/InstagramIcon'
 import TikTokIcon from '@/ui/icons/Social/TikTokIcon'
 
@@ -31,7 +31,6 @@ const Sidebar: FC<{
 	const { isOpen, setIsOpen, ref } = useOutside(false)
 
 	useEffect(() => {
-		console.log(pin)
 		setIsOpen(pin)
 	}, [pin])
 
@@ -48,14 +47,14 @@ const Sidebar: FC<{
 							overflow-y: hidden;
 						}
 					`}</style>
-					<div className={styles.aside_open} />
+					<div className={styles.aside_section} />
 				</>
 			)}
 			<aside
 				ref={ref}
 				className={clsx(styles.aside, {
 					[styles.aside_pin]:
-						viewportWidth <= 796 ? (!isSidebarOpen ? false : true) : pin
+						viewportWidth <= 796 ? (isSidebarOpen ? true : false) : pin
 				})}
 			>
 				<div className={styles.title}>
@@ -74,21 +73,14 @@ const Sidebar: FC<{
 							<Text size='body'>Ми у соціальних мережах</Text>
 							<div>
 								<Link
-									href='https://www.instagram.com/'
+									href='https://www.instagram.com/__craftech__/'
 									target='_blank'
 									className={styles.link}
 								>
 									<InstagramIcon />
 								</Link>
 								<Link
-									href='https://www.facebook.com/'
-									target='_blank'
-									className={styles.link}
-								>
-									<FacebookIcon />
-								</Link>
-								<Link
-									href='https://www.tiktok.com/'
+									href='https://www.tiktok.com/@_craftech_?lang=uk-UA'
 									target='_blank'
 									className={styles.link}
 								>
@@ -100,6 +92,28 @@ const Sidebar: FC<{
 							<Text size='body'>Інформація про компанію</Text>
 							<div>
 								<Text size='body'>+380 68 372 73 83</Text>
+								<Link
+									href='https://craft-tech.prom.ua/ua/'
+									target='_blank'
+									className={styles.link}
+								>
+									<Image
+										src='/images/prom-logo.jpg'
+										alt='prom'
+										layout='fill'
+										objectFit='cover'
+										quality={100}
+										placeholder='blur'
+										blurDataURL={'/images/prom-logo.jpg'}
+									/>
+								</Link>
+							</div>
+						</div>
+						<div className={styles.working}>
+							<Text size='body'>Графік праці</Text>
+							<div>
+								<Text size='body'>Понеділок - Неділя</Text>
+								<Text size='body'>10:00 - 18:30</Text>
 							</div>
 						</div>
 						<div className={styles.copyright}>

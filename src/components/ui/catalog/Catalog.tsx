@@ -57,11 +57,7 @@ const Catalog: FC<ICatalog> = ({
 						</Button>
 					</div>
 				)}
-				{!additionalTitle ? (
-					<Text className={styles.title} topline nowrap>
-						{title}
-					</Text>
-				) : (
+				{additionalTitle ? (
 					<div className={styles.title}>
 						<Text topline>{title}</Text>
 						<div className={styles.title_arrow}>
@@ -69,6 +65,10 @@ const Catalog: FC<ICatalog> = ({
 						</div>
 						<Text>{additionalTitle}</Text>
 					</div>
+				) : (
+					<Text className={styles.title} topline nowrap>
+						{title}
+					</Text>
 				)}
 				{sidebar && (
 					<div className={styles.actions}>

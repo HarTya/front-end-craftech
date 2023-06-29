@@ -15,6 +15,7 @@ import { PAGES } from '@/config/pages.config'
 import { useActions } from '@/hooks/useActions'
 import { useAuth } from '@/hooks/useAuth'
 import { useMenu } from '@/hooks/useMenu'
+import { useOutside } from '@/hooks/useOutside'
 
 import Cart from './Cart'
 import styles from './Header.module.scss'
@@ -24,14 +25,16 @@ import User from './User'
 const Header: FC = () => {
 	const { asPath } = useRouter()
 
+	const { isOpen, setIsOpen, ref } = useOutside(false)
+
 	const { user } = useAuth()
 
 	const { isMenuOpen } = useMenu()
 	const { toggleMenu, closeMenu } = useActions()
 
 	useEffect(() => {
-		closeMenu()
-	}, [asPath])
+		if (!isOpen) closeMenu()
+	}, [asPath, isOpen])
 
 	return (
 		<>
@@ -58,10 +61,17 @@ const Header: FC = () => {
 						priority
 					/>
 				</Link>
-				<div onClick={() => toggleMenu()} className={styles.menu}>
+				<div
+					onClick={() => {
+						toggleMenu()
+						setIsOpen(!isOpen)
+					}}
+					className={styles.menu}
+				>
 					{isMenuOpen ? <CrossMenuIcon /> : <MenuIcon />}
 				</div>
 				<nav
+					ref={ref}
 					className={clsx(styles.nav, {
 						[styles.nav_open]: isMenuOpen
 					})}

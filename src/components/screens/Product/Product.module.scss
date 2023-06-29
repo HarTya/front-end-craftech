@@ -218,7 +218,7 @@
 
 			> div:nth-child(2) {
 				height: auto;
-				padding: 20px 30px 30px 30px;
+				padding: 20px 30px;
 
 				> div:first-child {
 					padding-right: 0;
@@ -252,7 +252,7 @@
 
 @media screen and (max-width: 575px) {
 	.top {
-		height: 29px;
+		height: 30px;
 
 		&_arrow {
 			> svg {
