@@ -41,7 +41,7 @@ const Home: FC<IProductsPagination> = ({ products, length }) => {
 						<Text nowrap>разом з CRAFTECH!</Text>
 						<Text size='subheading' color='accent'>
 							З 2014 року ми прагнули до досконалості, щоб запропонувати нашим
-							клієнтам надійний та комфортний одяг за прибавливою ціною.
+							клієнтам надійний та комфортний одяг за привабливою ціною.
 						</Text>
 						<ScrollLink
 							to='shop'

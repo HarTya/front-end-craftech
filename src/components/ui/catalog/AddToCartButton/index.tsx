@@ -11,6 +11,7 @@ import { IAddToCartButton } from './AddToCartButton.interface'
 const AddToCartButton: FC<IAddToCartButton> = ({
 	product,
 	size,
+	error,
 	setError,
 	className
 }) => {
@@ -23,8 +24,6 @@ const AddToCartButton: FC<IAddToCartButton> = ({
 
 	return (
 		<Button
-			className={className}
-			size='medium'
 			onClick={() => {
 				if (currentProduct) {
 					removeFromCart({ id: currentProduct.id })
@@ -44,6 +43,9 @@ const AddToCartButton: FC<IAddToCartButton> = ({
 					)
 				}
 			}}
+			size='medium'
+			className={className}
+			disabled={error}
 		>
 			{currentProduct ? 'У кошику' : 'У кошик'}
 		</Button>

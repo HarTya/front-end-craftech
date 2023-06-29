@@ -92,17 +92,18 @@
 		right: -$border_width-medium;
 		border-radius: 0 0 0 $border_radius-small;
 		overflow-y: auto;
+		-webkit-overflow-scrolling: auto !important;
 
 		&::-webkit-scrollbar {
-			width: $border_width-medium;
+			width: $border_width-medium !important;
 		}
 
 		&::-webkit-scrollbar-track {
-			background: transparent;
+			background: transparent !important;
 		}
 
 		&::-webkit-scrollbar-thumb {
-			background: $color-accent-dark;
+			background: $color-accent-dark !important;
 		}
 
 		> div:last-child {

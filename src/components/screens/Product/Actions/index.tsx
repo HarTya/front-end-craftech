@@ -30,6 +30,7 @@ const Actions: FC<{ product: IProductObject }> = ({ product }) => {
 			<AddToCartButton
 				product={product}
 				size={selectedSize}
+				error={cartError}
 				setError={setCartError}
 				className={styles.addToCart}
 			/>
