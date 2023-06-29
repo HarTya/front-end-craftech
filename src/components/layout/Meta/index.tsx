@@ -16,7 +16,7 @@ const Meta: FC<PropsWithChildren<ISeo>> = ({ title, description, image }) => {
 				<>
 					<meta
 						name='keywords'
-						content='craftech, CRAFTECH, craftech.com.ua, craftech com ua, Військовий одяг, Військове спорядження, Військовий одяг, Купити військовий одяг, Військовий камуфляж, Продаж військового одягу, Військовий магазин CRAFTECH, Купити уніформу, Військові аксесуари, Військові товари'
+						content='craftech, CRAFTECH, craftech.com.ua, craftech com ua, Військовий одяг, Купити військовий одяг, Військове спорядження, Військовий камуфляж, Продаж військового одягу, Військовий магазин CRAFTECH, Купити уніформу, Військові аксесуари, Військові товари'
 					/>
 					<meta
 						itemProp='description'
