@@ -130,7 +130,7 @@ const Cart: FC<{ className: string }> = ({ className }) => {
 			price: item.price * item.quantity,
 			productId: item.product.id
 		}))
-		data.total = total
+		data.total = Math.ceil(total)
 
 		if (isAuth)
 			OrderService.placeOrder(data)
