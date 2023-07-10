@@ -13,6 +13,7 @@ export interface IOrderData {
 		productId: number
 	}[]
 	total: number
+	comment: string
 }
 
 export interface IOrderUnauthorizedData extends IOrderData {

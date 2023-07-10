@@ -7,6 +7,7 @@ import { toast } from 'react-toastify'
 
 import Button from '@/ui/Button'
 import Field from '@/ui/Field'
+import FieldTextArea from '@/ui/FieldTextArea'
 import Modal from '@/ui/Modal'
 import Select from '@/ui/Select'
 import Text from '@/ui/Text'
@@ -202,207 +203,219 @@ const Cart: FC<{ className: string }> = ({ className }) => {
 											className={styles.form}
 										>
 											<div>
-												<Field
-													{...formRegister('phone', {
-														required: 'Номер телефону не вказано',
-														pattern: {
-															value: /^0\d{9}$/,
-															message: 'Недійсний номер телефону'
-														}
-													})}
-													className={styles.field}
-													type='tel'
-													title='Номер телефону'
-													autoComplete='tel'
-													placeholder='0123456789'
-													error={errors.phone?.message}
-													prefix='+38'
-													readOnly={isAuth}
-													disabled={isLoading || isProfileLoading}
-												/>
-												<Field
-													{...formRegister('lastName', {
-														required: 'Прізвище не вказано',
-														pattern: {
-															value: /^[А-ЩЬЮЯҐЄІЇ][а-щьюяґєії']*$/,
-															message:
-																'Прізвище повинно починатися з великої літери, містити лише українські символи та бути без пробілів'
-														},
-														minLength: {
-															value: 3,
-															message:
-																'Прізвище має бути не коротшим за 3 символи'
-														},
-														maxLength: {
-															value: 19,
-															message:
-																'Прізвище має бути не довшим за 19 символів'
-														}
-													})}
-													className={styles.field}
-													type='text'
-													title='Прізвище'
-													autoComplete='family-name'
-													placeholder='Бандера'
-													error={errors.lastName?.message}
-													readOnly={isAuth}
-													disabled={isLoading || isProfileLoading}
-												/>
-												<Field
-													{...formRegister('firstName', {
-														required: "Ім'я не вказано",
-														pattern: {
-															value: /^[А-ЩЬЮЯҐЄІЇ][а-щьюяґєії']*$/,
-															message:
-																"Ім'я повинно починатися з великої літери, містити лише українські символи та бути без пробілів"
-														},
-														minLength: {
-															value: 2,
-															message: "Ім'я має бути не коротшим за 2 символи"
-														},
-														maxLength: {
-															value: 12,
-															message: "Ім'я має бути не довшим за 12 символів"
-														}
-													})}
-													className={styles.field}
-													type='text'
-													title="Ім'я"
-													autoComplete='given-name'
-													placeholder='Степан'
-													error={errors.firstName?.message}
-													readOnly={isAuth}
-													disabled={isLoading || isProfileLoading}
-												/>
-											</div>
-											<div>
-												<div className={styles.select}>
-													<Text size='body' color='accent-dark' nowrap>
-														Тип отримання замовлення
-													</Text>
-													<Select
-														placeholder='Оберіть тип отримання замовлення'
-														options={[
-															'Самовивіз з магазину\nм. Запоріжжя',
-															'Самовивіз з відділень\n"Нової пошти"'
-														]}
-														disableOptionNowrap
-														pickupType={pickupType}
-														setPickupType={setPickupType}
-														disabled={isLoading}
+												<div>
+													<Field
+														{...formRegister('phone', {
+															required: 'Номер телефону не вказано',
+															pattern: {
+																value: /^0\d{9}$/,
+																message: 'Недійсний номер телефону'
+															}
+														})}
+														className={styles.field}
+														type='tel'
+														title='Номер телефону'
+														autoComplete='tel'
+														placeholder='0123456789'
+														error={errors.phone?.message}
+														prefix='+38'
+														readOnly={isAuth}
+														disabled={isLoading || isProfileLoading}
+													/>
+													<Field
+														{...formRegister('lastName', {
+															required: 'Прізвище не вказано',
+															pattern: {
+																value: /^[А-ЩЬЮЯҐЄІЇ][а-щьюяґєії']*$/,
+																message:
+																	'Прізвище повинно починатися з великої літери, містити лише українські символи та бути без пробілів'
+															},
+															minLength: {
+																value: 3,
+																message:
+																	'Прізвище має бути не коротшим за 3 символи'
+															},
+															maxLength: {
+																value: 19,
+																message:
+																	'Прізвище має бути не довшим за 19 символів'
+															}
+														})}
+														className={styles.field}
+														type='text'
+														title='Прізвище'
+														autoComplete='family-name'
+														placeholder='Бандера'
+														error={errors.lastName?.message}
+														readOnly={isAuth}
+														disabled={isLoading || isProfileLoading}
+													/>
+													<Field
+														{...formRegister('firstName', {
+															required: "Ім'я не вказано",
+															pattern: {
+																value: /^[А-ЩЬЮЯҐЄІЇ][а-щьюяґєії']*$/,
+																message:
+																	"Ім'я повинно починатися з великої літери, містити лише українські символи та бути без пробілів"
+															},
+															minLength: {
+																value: 2,
+																message:
+																	"Ім'я має бути не коротшим за 2 символи"
+															},
+															maxLength: {
+																value: 12,
+																message:
+																	"Ім'я має бути не довшим за 12 символів"
+															}
+														})}
+														className={styles.field}
+														type='text'
+														title="Ім'я"
+														autoComplete='given-name'
+														placeholder='Степан'
+														error={errors.firstName?.message}
+														readOnly={isAuth}
+														disabled={isLoading || isProfileLoading}
 													/>
 												</div>
-												{pickupType === EnumOrderPickupType.STORE ? (
-													<>
-														<div className={styles.select}>
-															<Text size='body' color='accent-dark' nowrap>
-																День отримання замовлення
-															</Text>
-															<Select
-																placeholder='Оберіть день отримання замовлення'
-																options={[
-																	'Понеділок',
-																	'Вівторок',
-																	'Середа',
-																	'Четвер',
-																	"П'ятниця",
-																	'Субота',
-																	'Неділя'
-																]}
-																optionLimit={3}
-																setSelectedOptionForeign={setSelectedDay}
-																error={isDaySelectError}
-																setError={setIsDaySelectError}
-																disabled={isLoading}
-															/>
-														</div>
-														<div className={styles.select}>
-															<Text size='body' color='accent-dark' nowrap>
-																Час отримання замовлення
-															</Text>
-															<Select
-																placeholder='Оберіть час отримання замовлення'
-																options={[
-																	'12:00',
-																	'12:30',
-																	'13:00',
-																	'13:30',
-																	'14:00',
-																	'14:30',
-																	'15:00',
-																	'15:30',
-																	'16:00',
-																	'16:30',
-																	'17:00',
-																	'17:30',
-																	'18:00',
-																	'18:30'
-																]}
-																optionLimit={3}
-																setSelectedOptionForeign={setSelectedTime}
-																error={isTimeSelectError}
-																setError={setIsTimeSelectError}
-																disabled={isLoading}
-															/>
-														</div>
-													</>
-												) : (
-													<>
-														<Field
-															{...formRegister('city', {
-																required: 'Назву міста не вказано',
-																pattern: {
-																	value:
-																		/^[А-ЩЬЮЯҐЄІЇ][а-щьюяґєії' А-ЩЬЮЯҐЄІЇ]*$/,
-																	message:
-																		'Назва міста повинна починатися з великої літери та містити лише українські символи'
-																},
-																minLength: {
-																	value: 2,
-																	message:
-																		'Назва міста має бути не коротшою за 2 символи'
-																},
-																maxLength: {
-																	value: 30,
-																	message:
-																		'Назва міста має бути не довшою за 30 символів'
-																}
-															})}
-															className={styles.field}
-															type='text'
-															title='Назва міста'
-															autoComplete='home city'
-															placeholder='Бахмут'
-															error={errors.city?.message}
+												<div>
+													<div className={styles.select}>
+														<Text size='body' color='accent-dark' nowrap>
+															Тип отримання замовлення
+														</Text>
+														<Select
+															placeholder='Оберіть тип отримання замовлення'
+															options={[
+																'Самовивіз з магазину\nм. Запоріжжя',
+																'Самовивіз з відділень\n"Нової пошти"'
+															]}
+															disableOptionNowrap
+															pickupType={pickupType}
+															setPickupType={setPickupType}
 															disabled={isLoading}
 														/>
-														<Field
-															{...formRegister('postOfficeNumber', {
-																required:
-																	'Номер відділення "Нової пошти" не вказано',
-																min: {
-																	value: 1,
-																	message:
-																		'Нумерація відділень "Нової пошти" починається з 1'
-																},
-																max: {
-																	value: 50000,
-																	message:
-																		'Номер відділення "Нової пошти" не повинен перевищувати 50000'
-																}
-															})}
-															className={styles.field}
-															type='number'
-															title='Номер відділення "Нової пошти"'
-															autoComplete='off'
-															placeholder='0'
-															error={errors.postOfficeNumber?.message}
-															prefix='№'
-															disabled={isLoading}
-														/>
-													</>
-												)}
+													</div>
+													{pickupType === EnumOrderPickupType.STORE ? (
+														<>
+															<div className={styles.select}>
+																<Text size='body' color='accent-dark' nowrap>
+																	День отримання замовлення
+																</Text>
+																<Select
+																	placeholder='Оберіть день отримання замовлення'
+																	options={[
+																		'Понеділок',
+																		'Вівторок',
+																		'Середа',
+																		'Четвер',
+																		"П'ятниця",
+																		'Субота',
+																		'Неділя'
+																	]}
+																	optionLimit={3}
+																	setSelectedOptionForeign={setSelectedDay}
+																	error={isDaySelectError}
+																	setError={setIsDaySelectError}
+																	disabled={isLoading}
+																/>
+															</div>
+															<div className={styles.select}>
+																<Text size='body' color='accent-dark' nowrap>
+																	Час отримання замовлення
+																</Text>
+																<Select
+																	placeholder='Оберіть час отримання замовлення'
+																	options={[
+																		'12:00',
+																		'12:30',
+																		'13:00',
+																		'13:30',
+																		'14:00',
+																		'14:30',
+																		'15:00',
+																		'15:30',
+																		'16:00',
+																		'16:30',
+																		'17:00',
+																		'17:30',
+																		'18:00',
+																		'18:30'
+																	]}
+																	optionLimit={3}
+																	setSelectedOptionForeign={setSelectedTime}
+																	error={isTimeSelectError}
+																	setError={setIsTimeSelectError}
+																	disabled={isLoading}
+																/>
+															</div>
+														</>
+													) : (
+														<>
+															<Field
+																{...formRegister('city', {
+																	required: 'Назву міста не вказано',
+																	pattern: {
+																		value:
+																			/^[А-ЩЬЮЯҐЄІЇ][а-щьюяґєії' А-ЩЬЮЯҐЄІЇ]*$/,
+																		message:
+																			'Назва міста повинна починатися з великої літери та містити лише українські символи'
+																	},
+																	minLength: {
+																		value: 2,
+																		message:
+																			'Назва міста має бути не коротшою за 2 символи'
+																	},
+																	maxLength: {
+																		value: 30,
+																		message:
+																			'Назва міста має бути не довшою за 30 символів'
+																	}
+																})}
+																className={styles.field}
+																type='text'
+																title='Назва міста'
+																autoComplete='home city'
+																placeholder='Бахмут'
+																error={errors.city?.message}
+																disabled={isLoading}
+															/>
+															<Field
+																{...formRegister('postOfficeNumber', {
+																	required:
+																		'Номер відділення "Нової пошти" не вказано',
+																	min: {
+																		value: 1,
+																		message:
+																			'Нумерація відділень "Нової пошти" починається з 1'
+																	},
+																	max: {
+																		value: 50000,
+																		message:
+																			'Номер відділення "Нової пошти" не повинен перевищувати 50000'
+																	}
+																})}
+																className={styles.field}
+																type='number'
+																title='Номер відділення "Нової пошти"'
+																autoComplete='off'
+																placeholder='0'
+																error={errors.postOfficeNumber?.message}
+																prefix='№'
+																disabled={isLoading}
+															/>
+														</>
+													)}
+												</div>
 											</div>
+											<FieldTextArea
+												{...formRegister('comment')}
+												className={clsx(styles.field, styles.textarea)}
+												title='Коментар до замовлення (за бажанням)'
+												autoComplete='off'
+												placeholder='Як ми можемо вам допомогти?'
+												disabled={isLoading}
+											/>
 										</form>
 									) : (
 										<></>

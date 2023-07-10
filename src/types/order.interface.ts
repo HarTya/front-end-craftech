@@ -15,6 +15,7 @@ export interface IOrderObject {
 	postOfficeNumber: number
 	items: ICartItem[]
 	total: number
+	comment: string
 	phone: string
 	lastName: string
 	firstName: string
