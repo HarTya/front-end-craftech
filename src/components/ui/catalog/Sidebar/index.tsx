@@ -73,14 +73,14 @@ const Sidebar: FC<{
 							<Text size='body'>Ми у соціальних мережах</Text>
 							<div>
 								<Link
-									href='https://www.instagram.com/__craftech__/'
+									href='https://www.instagram.com/craftech.military/'
 									target='_blank'
 									className={styles.link}
 								>
 									<InstagramIcon />
 								</Link>
 								<Link
-									href='https://www.tiktok.com/@_craftech_?lang=uk-UA'
+									href='https://www.tiktok.com/@craftech_millitary?lang=uk-UA'
 									target='_blank'
 									className={styles.link}
 								>
